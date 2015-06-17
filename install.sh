@@ -6,6 +6,8 @@ fish_shell=`/usr/bin/env which fish`
 
 sword_root="$HOME/.sword"
 
+sword_git="https://github.com/tmaone/sword-fish.git"
+
 os=`uname -s | sed -e 's/  */-/g;y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'`
 
 if [ ! -z "$fish_shell" ]; then
