@@ -43,3 +43,5 @@ else
   cd "$sword_root";
   git pull;
 fi
+
+echo "end."
