@@ -16,7 +16,6 @@ else
   echo "fish-shell is not installed!";
   case "$os" in
       darwin)
-        # echo "Darwin";
         if [ -e "/usr/local/bin/brew" ]; then
           echo "You can install [fish-shell] using [homebrew] with:\n\n  brew install fish --HEAD\n"
         fi
@@ -25,13 +24,22 @@ else
         fi
         ;;
       linux)
-        echo "Linux";
         echo "You need to install [fish-shell] using your package manager\n"
         ;;
       *)
-        echo "Uknown";
         echo "You need to install [fish-shell] using your package manager\n"
         ;;
   esac
   exit 1;
+fi
+
+if [ ! -d "$sword_root" ]; then
+  mkdir -p "$sword_root";
+fi
+
+if [ ! -e "$sword_root/.git/config" ]; then
+  git clone "$sword_git" "$sword_root";
+else
+  cd "$sword_root";
+  git pull;
 fi
