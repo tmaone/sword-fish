@@ -2,6 +2,10 @@ function arg
 
 end
 
+function arg.init
+
+end
+
 function arg.one
     if test (count $argv) -ge 1
         return 0
