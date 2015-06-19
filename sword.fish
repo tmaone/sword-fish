@@ -18,10 +18,18 @@ end
 
 # Add sword core to fish function path
 if not contains $sword_core $fish_function_path
-    set fish_function_path $fish_function_path  $sword_core
+    set fish_function_path $fish_function_path $sword_core
 end
 
-import arg
+if not set -q sword_imports
+  import arg
+end
+
+# Add sword core to fish function path
+if contains $sword_core $fish_function_path
+  set -l idx (contains --index $sword_core $fish_function_path)
+  set -e fish_function_path[$idx]
+end
 
 # if not set -q sword_version
 #   set -xg sword_version (cat version)
