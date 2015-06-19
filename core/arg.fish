@@ -78,6 +78,3 @@ end
 function arg.count
     count $argv
 end
-
-# echo haha
-# arg.count "adasd" "dasdas" "dasdasda" "dsaasdsa"
