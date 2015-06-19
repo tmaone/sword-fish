@@ -1,15 +1,14 @@
 import arg
 
-set -g fish_color
+# set -g fish_color
 
-# if not set -q color_data
-set -xg color_data "$sword_root/data/rgb.txt"
-# end
+if not set -q color_data
+	set -xg color_data "$sword_core/colors"
+end
 
 function --on-event color_not_found _fish_color_not_found
 	echo "Color not found! :("
 end
-
 
 function color.black
 	if not set -q color_black
@@ -143,7 +142,7 @@ function color.demo
 	set -l color_rgb (cat "$color_data" | awk -F ' ' '{print $2}' | tr -d '\#')
 
 	set -l color_count (count $color_names)
-	
+
 	# for i in (seq $color_count)
 	# 	printf "%s\n" (eval "color.$color_names[$i]")"color_$color_names[$i]"
 	# 	# echo "name:$color_names[$i]" "rgb:$color_rgb[$i]"
@@ -199,7 +198,7 @@ function color.personal
 				set -U -- $argv
 			# end
 		end
-		
+
 		# Regular syntax highlighting colors
 		set_default fish_color_normal $color_black
 		# set_default fish_color_normal $color_normal
@@ -254,7 +253,7 @@ function color.load
 			echo "name:$color_names[$i]" "rgb:$color_rgb[$i]"
 			if  set -q "color_$color_names[$i]"
 				set -e "color_$color_names[$i]" "$color_rgb[$i]"
-			end			
+			end
 			if functions -q "color.$color_names[$i]"
 				functions -e "color.$color_names[$i]"
 				# function "color.$color_names[$i]"
