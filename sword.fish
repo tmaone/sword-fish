@@ -41,6 +41,7 @@ end
 
 function sword
   arg.count $argv
+  color.demo
   # echo "Sword-Fish"
   # echo $sword_version`
 end
