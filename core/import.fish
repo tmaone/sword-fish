@@ -29,28 +29,3 @@ function import --description 'Imports a core functionality'
   end
 
 end
-
-
-#
-#   for package in $argv
-#
-#   end
-# end
-
-                    # echo $package "   - >>  " $imports
-
-                    # echo loading $package
-                    # if test -f "$sword_functions/$package.fish"
-
-
-                    # end
-                    # echo $package loaded
-    #             else
-    #                 # echo $package already loaded
-    #             end
-    #         else
-    #             return 1
-    #             echo file "$sword_functions/$package.fish" does not exist
-    #         end
-    #     end
-    # end

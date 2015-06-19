@@ -23,7 +23,6 @@ end
 
 import arg
 
-
 # if not set -q sword_version
 #   set -xg sword_version (cat version)
 # end

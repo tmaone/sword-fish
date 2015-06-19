@@ -3,7 +3,7 @@ function arg
 end
 
 function arg.init
-echo haha
+
 end
 
 function arg.one
