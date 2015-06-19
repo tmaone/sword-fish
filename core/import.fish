@@ -18,12 +18,12 @@ function import --description 'Imports a core functionality'
           end
           return 0
         else
-          # echo "$sword_core/$package.fish" does not exist
+          echo "$sword_core/$package.fish" does not exist
           return 1
         end
       else
         return 0
-        # echo "$package" already in "$imports"
+        echo "$package" already in "$imports"
       end
     end
   end
