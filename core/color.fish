@@ -1,124 +1,164 @@
 import arg error
 
-if not set -q color_data
-	set -xg color_data "$sword_core/colors"
-end
+function color.init
 
-function --on-event color_not_found _fish_color_not_found
-	error "Color not found!"
-end
+	if not set -q color_data
+		set -xg color_data "$sword_core/colors"
+	end
 
-function color.black
+	function --on-event color_not_found _fish_color_not_found
+		error "Color not found!"
+	end
+
 	if not set -q color_black
 		set -U color_black "1D3232"
 	end
+
+	if not set -q color_gray
+		set -U color_gray "96AAAA"
+	end
+
+	if not set -q color_red
+		set -U color_red "B7261B"
+	end
+
+	if not set -q color_orange
+		set -U color_orange "DF740C"
+	end
+
+	if not set -q color_green
+		set -U color_green "30B51F"
+	end
+
+	if not set -q color_olive
+		set -U color_olive "7AB44D"
+	end
+
+	if not set -q color_yellow
+		set -U color_yellow "FFE64D"
+	end
+
+	if not set -q color_sun
+		set -U color_sun "FFFF00"
+	end
+
+	if not set -q color_blue
+		set -U color_blue "6FC3DF"
+	end
+
+	if not set -q color_sea
+		set -U color_sea "62D6F6"
+	end
+
+	if not set -q color_purple
+		set -U color_purple "C817C9"
+	end
+
+	if not set -q color_pink
+		set -U color_pink "C890C9"
+	end
+
+	if not set -q color_cyan
+		set -U color_cyan "468DA5"
+	end
+
+	if not set -q color_pastel
+		set -U color_pastel "50ABC5"
+	end
+
+	if not set -q color_normal
+		set -U color_normal "C8F0DD"
+	end
+
+	if not set -q color_white
+		set -U color_white "E6FFFF"
+	end
+
+	if test -f $color_data
+		set -xg color_names (cat "$color_data" | awk -F ' ' '{print $1}')
+		set -xg color_rgb (cat "$color_data" | awk -F ' ' '{print $2}' | tr -d '\#')
+		set -xg color_count (count $color_names)
+			# echo seq $color_count
+			for i in (seq $color_count)
+				# echo "name:$color_names[$i]" "rgb:$color_rgb[$i]"
+				if not set -q color_$color_names[$i]
+					set -U color_$color_names[$i] $color_rgb[$i]
+				end
+				# if functions -q "color.$color_names[$i]"
+				# 	functions -e "color.$color_names[$i]"
+				# 	# function "color.$color_names[$i]"
+				# 	# 	color "$color_rgb[$i]"
+				# 	# end
+				# end
+			end
+
+		end
+
+end
+
+function color.black
 	color "$color_black"
 end
 
 function color.gray
-	if not set -q color_gray
-		set -U color_gray "96AAAA"
-	end
 	color "$color_gray"
 end
 
 function color.red
-	if not set -q color_red
-		set -U color_red "B7261B"
-	end
 	color "$color_red"
 end
 
 function color.orange
-	if not set -q color_orange
-		set -U color_orange "DF740C"
-	end
 	color "$color_orange"
 end
 
 function color.green
-	if not set -q color_green
-		set -U color_green "30B51F"
-	end
 	color "$color_green"
 end
 
 function color.olive
-	if not set -q color_olive
-		set -U color_olive "7AB44D"
-	end
 	color "$color_olive"
 end
 
 function color.yellow
-	if not set -q color_yellow
-		set -U color_yellow "FFE64D"
-	end
 	color "$color_yellow"
 end
 
 function color.sun
-	if not set -q color_sun
-		set -U color_sun "FFFF00"
-	end
 	color "$color_sun"
 end
 
 function color.blue
-	if not set -q color_blue
-		set -U color_blue "6FC3DF"
-	end
 	color "$color_blue"
 end
 
 function color.sea
-	if not set -q color_sea
-		set -U color_sea "62D6F6"
-	end
 	color "$color_sea"
 end
 
 
 function color.purple
-	if not set -q color_purple
-		set -U color_purple "C817C9"
-	end
 	color "$color_purple"
 end
 
 function color.pink
-	if not set -q color_pink
-		set -U color_pink "C890C9"
-	end
 	color "$color_pink"
 end
 
 
 function color.cyan
-	if not set -q color_cyan
-		set -U color_cyan "468DA5"
-	end
 	color "$color_cyan"
 end
 
 function color.pastel
-	if not set -q color_pastel
-		set -U color_pastel "50ABC5"
-	end
 	color "$color_pastel"
 end
 
 function color.normal
-	if not set -q color_normal
-		set -U color_normal "C8F0DD"
-	end
 	color "$color_normal"
 end
 
 function color.white
-	if not set -q color_white
-		set -U color_white "E6FFFF"
-	end
 	color "$color_white"
 end
 
@@ -236,29 +276,4 @@ function color.personal
 
 		set_default fish_color_history_current cyan
 
-end
-
-
-function color.load
-	if test -f "$color_data"
-
-		set -l color_names (cat "$color_data" | awk -F ' ' '{print $1}')
-		set -l color_rgb (cat "$color_data" | awk -F ' ' '{print $2}' | tr -d '\#')
-
-		set -l color_count (count $color_names)
-		echo seq $color_count
-		for i in (seq $color_count)
-			echo "name:$color_names[$i]" "rgb:$color_rgb[$i]"
-			if  set -q "color_$color_names[$i]"
-				set -e "color_$color_names[$i]" "$color_rgb[$i]"
-			end
-			if functions -q "color.$color_names[$i]"
-				functions -e "color.$color_names[$i]"
-				# function "color.$color_names[$i]"
-				# 	color "$color_rgb[$i]"
-				# end
-			end
-		end
-
-	end
 end

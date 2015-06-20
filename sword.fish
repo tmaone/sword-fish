@@ -27,10 +27,10 @@ if not contains $sword_core $fish_function_path
     set fish_function_path $fish_function_path $sword_core
 end
 
-if not set -q sword_imports
-  import arg array color debug error info log out warn
-end
-
+# if not set -q sword_imports
+import arg array color debug error info log out warn
+# end
+#
 # Add sword core to fish function path
 # if contains $sword_core $fish_function_path
 #   set -l idx (contains --index $sword_core $fish_function_path)
