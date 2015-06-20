@@ -91,93 +91,29 @@ function color.init
 			end
 	end
 
-end
+	var.xglobal color_info $color_gray
 
-
-function color.black
-	color "$color_black"
-end
-
-function color.gray
-	color "$color_gray"
-end
-
-function color.red
-	color "$color_red"
-end
-
-function color.orange
-	color "$color_orange"
-end
-
-function color.green
-	color "$color_green"
-end
-
-function color.olive
-	color "$color_olive"
-end
-
-function color.yellow
-	color "$color_yellow"
-end
-
-function color.sun
-	color "$color_sun"
-end
-
-function color.blue
-	color "$color_blue"
-end
-
-function color.sea
-	color "$color_sea"
-end
-
-
-function color.purple
-	color "$color_purple"
-end
-
-function color.pink
-	color "$color_pink"
-end
-
-
-function color.cyan
-	color "$color_cyan"
-end
-
-function color.pastel
-	color "$color_pastel"
-end
-
-function color.normal
-	color "$color_normal"
-end
-
-function color.white
-	color "$color_white"
-end
-
-function color.brown
-	set_color brown
 end
 
 function color.demo
-	printf "%s\n" (color.black)" Black "(color.gray)" Gray "
-	printf "%s\n" (color.red)" Red "(color.orange)" Orange "
-	printf "%s\n" (color.green)" Green "(color.olive)" Olive "
-	printf "%s\n" (color.yellow)" Yellow "(color.sun)" Sun "
-	printf "%s\n" (color.blue)" Blue "(color.sea)" Sea "
-	printf "%s\n" (color.purple)" Purple "(color.pink)" Pink "
-	printf "%s\n" (color.cyan)" Cyan "(color.pastel)" Pastel "
-	printf "%s\n" (color.normal)" Normal "(color.white)" White "
 
-	set -l color_names (cat "$color_data" | awk -F ' ' '{print $1}')
-	set -l color_rgb (cat "$color_data" | awk -F ' ' '{print $2}' | tr -d '\#')
-
-	set -l color_count (count $color_names)
+	for name in $color_names
+		echo -n (color $name) $name
+	end
+	#
+	# printf "%s\n" (color.black)" Black "(color.gray)" Gray "
+	# printf "%s\n" (color.red)" Red "(color.orange)" Orange "
+	# printf "%s\n" (color.green)" Green "(color.olive)" Olive "
+	# printf "%s\n" (color.yellow)" Yellow "(color.sun)" Sun "
+	# printf "%s\n" (color.blue)" Blue "(color.sea)" Sea "
+	# printf "%s\n" (color.purple)" Purple "(color.pink)" Pink "
+	# printf "%s\n" (color.cyan)" Cyan "(color.pastel)" Pastel "
+	# printf "%s\n" (color.normal)" Normal "(color.white)" White "
+	#
+	# set -l color_names (cat "$color_data" | awk -F ' ' '{print $1}')
+	# set -l color_rgb (cat "$color_data" | awk -F ' ' '{print $2}' | tr -d '\#')
+	#
+	# set -l color_count (count $color_names)
 
 	# for i in (seq $color_count)
 	# 	printf "%s\n" (eval "color.$color_names[$i]")"color_$color_names[$i]"
@@ -186,40 +122,58 @@ function color.demo
 	# " gray "(color.brown)" brown "(color.blue)" blue "(color.cyan)" cyan "(color.green)" green "(color.magenta)" magenta "(color.normal)" normal "(color.purple)" purple "(color.white)" white "(color.yellow)" yellow "
 end
 
-function color.clear
-	set -e color_black
-	set -e color_gray
-	set -e color_red
-	set -e color_orange
-	set -e color_green
-	set -e color_olive
-	set -e color_yellow
-	set -e color_sun
-	set -e color_blue
-	set -e color_sea
-	set -e color_purple
-	set -e color_pink
-	set -e color_cyan
-	set -e color_pastel
-	set -e color_normal
-	set -e color_white
-end
-
 function color
-	if arg.has_args $argv
-		# echo $argv
-		if set_color $argv 2> /dev/null
+
+	if arg $argv
+
+		if set -q color_$argv[1]
+			var.local color_set color_$argv[1]
+			set_color "$$color_set" 2> /dev/null
 			return 0
-		else
-			# set_color $argv 2> /dev/null
-			emit color_not_found
-			return 1
 		end
-	else
-		color.demo >/dev/null
-		return 0
+
+		if set_color $argv[1] 2> /dev/null
+			return 0
+		end
+
+		emit color_not_found
+		return 1
+
 	end
-end
+
+		# if set -q color_$argv[1]
+		# 	set -l color_set color_$argv[1]
+		# 	if set_color "$$color_set" 2> /dev/null
+		# 		# echo $$color_set
+		# 		return 0
+		# 	else
+		# 		emit color_not_found
+ 	# 			return 1
+		# 	end
+		# end
+		# # if contains $color_names $argv
+		# 	echo color_$argv[1]
+		# 	# set -l color_set $color_$argv[1]
+		# 	# set -U color_$color_names[$i] $color_rgb[$i]
+		# 	# echo $color_$argv[1]
+		# 	else
+			# echo not included
+
+	end
+
+		# if set -q color_$argv[1]
+		# 	if set_color "$color_$argv[1]" 2> /dev/null
+		# 		return 0
+		# 	else
+		# 		emit color_not_found
+		# 		return 1
+		# 	end
+		# else
+		# # color.demo >/dev/null
+		# 	return 0
+		# end
+	# end
+# end
 
 function color.personal
 
@@ -229,11 +183,11 @@ function color.personal
 		# Set various defaults using these throwaway functions
 		#
 
-		function set_default -d "Set a universal variable, unless it has already been set"
-			# if not set -q $argv[1]
-				set -U -- $argv
-			# end
-		end
+		# function set_default -d "Set a universal variable, unless it has already been set"
+		# 	# if not set -q $argv[1]
+		# 		set -U -- $argv
+		# 	# end
+		# end
 
 		# Regular syntax highlighting colors
 		set_default fish_color_normal $color_black
@@ -275,3 +229,25 @@ function color.personal
 		set_default fish_color_history_current cyan
 
 end
+
+
+# …sh_color_autosuggestion  (Variable: 6FC3DF)
+# …sh_color_cwd_root       (Variable: B7261B)
+# …sh_color_host  (Variable: '-o' 'cyan')
+# …sh_color_param                      (Variable: 468DA5)
+# …sh_color_selection      (Variable: --background=C817C9)
+# …sh_color_command         (Variable: C817C9)
+# …sh_color_error          (Variable: B7261B)
+# …sh_color_match      (Variable: 62D6F6)
+# …sh_color_quote                      (Variable: FFE64D)
+# …sh_color_status                         (Variable: red)
+# …sh_color_comment         (Variable: 96AAAA)
+# …sh_color_escape         (Variable: 7AB44D)
+# …sh_color_normal     (Variable: 1D3232)
+# …sh_color_redirection                (Variable: DF740C)
+# …sh_color_user                  (Variable: '-o' 'green')
+# …sh_color_cwd             (Variable: 30B51F)
+# …sh_color_history_current  (Variable: cyan)
+# …sh_color_operator   (Variable: FFFF00)
+# …sh_color_search_match  (Variable: --background=C817C9)
+# …sh_color_valid_path  (Variable: '6FC3DF' '--underline')

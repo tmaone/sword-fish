@@ -1,7 +1,7 @@
-import arg log
+import out
 
 function info
-  if arg.has_args $argv
-    log.info $argv
+  if arg $argv
+    out (color $color_info) info (color $color_normal) $argv
   end
 end

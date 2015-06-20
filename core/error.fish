@@ -1,7 +1,7 @@
 import arg log
 
 function error
-  if arg.has_args $argv
+  if arg $argv
     log error $argv
   end
 end

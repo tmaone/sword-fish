@@ -1,5 +1,3 @@
-import arg color
-#temp
 
 if not set -q log_filename
     set -xg log_filename  'sword-fish.log'
@@ -82,7 +80,7 @@ function log.valid
     end
 end
 
-function ++
+function log.file
     if test (count $argv) = 0
         echo "$fish_log_to_file"
     end
@@ -105,7 +103,7 @@ function ++
 end
 
 function log
-    if arg.has_args $argv
+    if arg $argv
         if log.valid $argv[1]
             if contains $argv[1] $fish_log_levels
                 switch $argv[1]

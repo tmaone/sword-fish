@@ -1,13 +1,27 @@
 function core --description "sword-fish core"
 
-  import arg
-  import array
+end
 
-  import call
+function core.init
 
-  import in
-  import out
+  if not set -q sword_core_init
 
-  # import color
+    import arg
+    import array
+
+    import call
+
+    import var
+
+    import string
+
+    import color
+
+    import in
+    import out
+
+    set -xg sword_core_init "done"
+
+  end
 
 end

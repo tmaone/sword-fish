@@ -27,7 +27,7 @@ if not contains $sword_core $fish_function_path
     set fish_function_path $fish_function_path $sword_core
 end
 
-core
+import core
 
 # if not set -q sword_imports
 # import arg array color debug error info log out warn
