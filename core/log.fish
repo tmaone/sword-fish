@@ -1,24 +1,26 @@
 import arg color
 #temp
 
-if not test $LOGNAME = 'swordfish'
-    set -xg LOGNAME 'swordfish'
+if not test $log_filename = 'sword-fish.log'
+    set -xg log_filename  'sword-fish.log'
 end
 
-if not test -d "$sword_root/log"
-    mkdir "$sword_root/log"
+if not test $log_path = '$sword_root/log'
+  set -xg log_path = '$sword_root/log'
+  if not test -d $log_path
+    mkdir -p $log_path
+  end
 end
 
-if not set -q fish_log_file
-    set -xg fish_log_file "$sword_root/log/sword.log"
+if not set -q sword_log
+    set -xg sword_log "$log_path/$log_filename"
+    if not test -f $sword_log
+      touch $sword_log
+    end
 end
 
-if not test -f "$fish_log_file"
-    touch "$fish_log_file"
-end
-
-if not set -q fish_log_to_file
-    set -xU fish_log_to_file off
+if not set -q sword_log_file
+    set -xU sword_log_file off
 end
 
 function log.level

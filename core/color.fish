@@ -1,14 +1,13 @@
-import arg
-
-# set -g fish_color
+import arg error
 
 if not set -q color_data
 	set -xg color_data "$sword_core/colors"
 end
 
 function --on-event color_not_found _fish_color_not_found
-	echo "Color not found! :("
+	error "Color not found!"
 end
+
 
 function color.black
 	if not set -q color_black
