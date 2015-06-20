@@ -1,7 +1,5 @@
-import arg log
-
 function warn
-  if arg.has_args $argv
-    log.warn $argv
+  if arg $argv
+    out.ln (color $color_warn)warn(color $color_normal) $argv
   end
 end

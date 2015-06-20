@@ -1,7 +1,5 @@
-import arg log
-
 function error
   if arg $argv
-    log error $argv
+    out.ln (color $color_error)error(color $color_normal) $argv
   end
 end

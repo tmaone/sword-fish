@@ -8,70 +8,6 @@ function color.init
 		error "Color not found!"
 	end
 
-	if not set -q color_black
-		set -U color_black "1D3232"
-	end
-
-	if not set -q color_gray
-		set -U color_gray "96AAAA"
-	end
-
-	if not set -q color_red
-		set -U color_red "B7261B"
-	end
-
-	if not set -q color_orange
-		set -U color_orange "DF740C"
-	end
-
-	if not set -q color_green
-		set -U color_green "30B51F"
-	end
-
-	if not set -q color_olive
-		set -U color_olive "7AB44D"
-	end
-
-	if not set -q color_yellow
-		set -U color_yellow "FFE64D"
-	end
-
-	if not set -q color_sun
-		set -U color_sun "FFFF00"
-	end
-
-	if not set -q color_blue
-		set -U color_blue "6FC3DF"
-	end
-
-	if not set -q color_sea
-		set -U color_sea "62D6F6"
-	end
-
-	if not set -q color_purple
-		set -U color_purple "C817C9"
-	end
-
-	if not set -q color_pink
-		set -U color_pink "C890C9"
-	end
-
-	if not set -q color_cyan
-		set -U color_cyan "468DA5"
-	end
-
-	if not set -q color_pastel
-		set -U color_pastel "50ABC5"
-	end
-
-	if not set -q color_normal
-		set -U color_normal "C8F0DD"
-	end
-
-	if not set -q color_white
-		set -U color_white "E6FFFF"
-	end
-
 	if test -f $color_data
 		set -xg color_names (cat "$color_data" | awk -F ' ' '{print $1}')
 		set -xg color_rgb (cat "$color_data" | awk -F ' ' '{print $2}' | tr -d '\#')
@@ -91,14 +27,18 @@ function color.init
 			end
 	end
 
-	var.xglobal color_info $color_gray
+	var.global color_normal $color_whitesmoke
+	var.global color_info 	$color_gray
+	var.global color_warn 	$color_palegoldenrod
+	var.global color_error 	$color_crimson
+	var.global color_debug 	$color_darkorange
 
 end
 
 function color.demo
 
 	for name in $color_names
-		echo -n (color $name) $name
+		out (color $name)"$name "
 	end
 	#
 	# printf "%s\n" (color.black)" Black "(color.gray)" Gray "
@@ -127,7 +67,7 @@ function color
 	if arg $argv
 
 		if set -q color_$argv[1]
-			var.local color_set color_$argv[1]
+			set -l color_set color_$argv[1]
 			set_color "$$color_set" 2> /dev/null
 			return 0
 		end
@@ -190,7 +130,7 @@ function color.personal
 		# end
 
 		# Regular syntax highlighting colors
-		set_default fish_color_normal $color_black
+		# set_default fish_color_normal $color_black
 		# set_default fish_color_normal $color_normal
 
 		# set_default fish_color_command $color_purple
@@ -226,7 +166,7 @@ function color.personal
 		# Directory history colors
 		#
 
-		set_default fish_color_history_current cyan
+		# set_default fish_color_history_current cyan
 
 end
 

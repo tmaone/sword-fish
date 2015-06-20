@@ -48,7 +48,7 @@ import core
 # end
 
 function sword
-  # arg.count $argv
+  arg.count $argv
   # color.demo
   # echo "Sword-Fish"
   # echo $sword_version`

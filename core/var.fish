@@ -7,12 +7,9 @@ function var.default
 end
 
 function var.global
-  set -g -- $argv
-end
-
-function var.xglobal
   set -xg -- $argv
 end
+
 
 function var.local
   set -l -- $argv

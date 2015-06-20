@@ -3,3 +3,9 @@ function out
     echo -n $argv
   end
 end
+
+function out.ln
+  if arg $argv
+    echo $argv
+  end
+end

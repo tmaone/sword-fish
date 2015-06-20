@@ -57,7 +57,6 @@ function arg.second
     end
 end
 
-
 function arg.third
     if arg.three $argv
         echo $argv[3]

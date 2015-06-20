@@ -20,3 +20,7 @@ function import --description 'Imports a core functionality'
   end
 
 end
+
+function import.clear --description 'Clears imported core functionality'
+  set -xg sword_imports ""
+end

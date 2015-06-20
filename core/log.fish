@@ -108,16 +108,16 @@ function log
             if contains $argv[1] $fish_log_levels
                 switch $argv[1]
                     case info
-                        echo (color.green)"["(color.white)"$argv[1]"(color.green)"]"(color.normal) "$argv[2..-1]"(color.green)"."(color.normal)
+                        echo (color green)"["(color white)"$argv[1]"(color green)"]"(color normal) "$argv[2..-1]"(color green)"."(color normal)
                         return 0
                     case warn
-                        echo (color.green)"["(color.yellow)"$argv[1]"(color.green)"]"(color.normal) "$argv[2..-1]"(color.green)"."(color.normal)
+                        echo (color green)"["(color yellow)"$argv[1]"(color green)"]"(color normal) "$argv[2..-1]"(color green)"."(color normal)
                         return 0
                     case debug
-                        echo (color.green)"["(color.purple)"$argv[1]"(color.green)"]"(color.normal) "$argv[2..-1]"(color.green)"."(color.normal)
+                        echo (color green)"["(color purple)"$argv[1]"(color green)"]"(color normal) "$argv[2..-1]"(color green)"."(color normal)
                         return 0
                     case error
-                        echo (color.green)"["(color.red)"$argv[1]"(color.green)"]"(color.normal) "$argv[2..-1]"(color.green)"."(color.normal)
+                        echo (color green)"["(color red)"$argv[1]"(color green)"]"(color normal) "$argv[2..-1]"(color green)"."(color normal)
                         return 0
                     case '*'
                         return 1

@@ -23,10 +23,10 @@ function debug
   if debug.enabled
     if arg $argv
       switch $argv[1]
-        case log
-          log debug "$argv[1..-1]"
-        case '*'
+        case eval
           eval $argv
+        case '*'
+          out.ln (color $color_debug)debug(color $color_normal) $argv
       end
     end
     # and arg $argv
@@ -34,3 +34,4 @@ function debug
     # log.debug $argv
   end
 end
+out
