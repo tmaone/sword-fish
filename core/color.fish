@@ -84,17 +84,20 @@ function color.init
 				if not set -q color_$color_names[$i]
 					set -U color_$color_names[$i] $color_rgb[$i]
 				end
-				# if functions -q "color.$color_names[$i]"
-				# 	functions -e "color.$color_names[$i]"
+				# if not functions -q "color.$color_names[$i]"
+				# 	function "color.$color_names[$i]"
 				# 	# function "color.$color_names[$i]"
-				# 	# 	color "$color_rgb[$i]"
-				# 	# end
+				# 		color "$color_rgb[$i]"
+				# 	end
 				# end
 			end
 
 		end
 
+		echo hahahahah
+
 end
+
 
 function color.black
 	color "$color_black"
