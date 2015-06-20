@@ -2,6 +2,10 @@ function array
 
 end
 
+function array.init
+
+end
+
 function array.size
 
 end

@@ -1,5 +1,3 @@
-import arg error
-
 function color.init
 
 	if not set -q color_data
@@ -91,10 +89,7 @@ function color.init
 				# 	end
 				# end
 			end
-
-		end
-
-		echo hahahahah
+	end
 
 end
 

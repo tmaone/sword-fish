@@ -1,7 +1,5 @@
-import arg
-
 function out
-  if arg.has_args $argv
+  if arg $argv
     echo -n $argv
   end
 end

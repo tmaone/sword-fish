@@ -1,9 +1,9 @@
 function arg
-
-end
-
-function arg.init
-
+  if test (count $argv) -gt 0
+    return 0
+  else
+    return 1
+  end
 end
 
 function arg.one
@@ -32,14 +32,6 @@ end
 
 function arg.many
     if test (count $argv) -gt 3
-        return 0
-    else
-        return 1
-    end
-end
-
-function arg.has_args
-    if test (count $argv) -gt 0
         return 0
     else
         return 1

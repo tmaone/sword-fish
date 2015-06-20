@@ -27,8 +27,10 @@ if not contains $sword_core $fish_function_path
     set fish_function_path $fish_function_path $sword_core
 end
 
+core
+
 # if not set -q sword_imports
-import arg array color debug error info log out warn
+# import arg array color debug error info log out warn
 # end
 #
 # Add sword core to fish function path
@@ -46,8 +48,8 @@ import arg array color debug error info log out warn
 # end
 
 function sword
-  arg.count $argv
-  color.demo
+  # arg.count $argv
+  # color.demo
   # echo "Sword-Fish"
   # echo $sword_version`
 end
