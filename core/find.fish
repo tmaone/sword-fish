@@ -24,7 +24,7 @@ function find.program
         set -xg $find_program $find_bin
         return 0
     else
-        debug "Program [$program] not found"
+        debug "Program [$find_program] not found"
         return 1
     end
 
