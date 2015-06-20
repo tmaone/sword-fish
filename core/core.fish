@@ -22,9 +22,39 @@ function core.init
 
     import log
 
+    import profile
+
     import find
 
     import dir
+
+    import disk
+
+    import download
+
+    import file
+
+    import fn
+
+    import linux
+
+    import osx
+
+    import path
+
+    import net
+
+    import plugin
+
+    import prompt
+
+    import setting
+
+    import src
+
+    import sudo
+
+    import uuid
 
     import info warn debug error
 
@@ -33,6 +63,10 @@ function core.init
     import date
 
     import reload
+
+    import git
+
+    import wd
 
     set -xg sword_core_init "done"
     debug "core.init done"
