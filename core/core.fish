@@ -22,9 +22,9 @@ function core.init
 
     import log
 
-    import profile
-
     import find
+
+    import profile
 
     import dir
 
