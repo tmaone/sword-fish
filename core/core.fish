@@ -34,6 +34,8 @@ function core.init
 
     import file
 
+    import fish
+
     import fn
 
     import linux
