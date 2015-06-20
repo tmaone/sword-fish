@@ -8,7 +8,6 @@ function --on-event color_not_found _fish_color_not_found
 	error "Color not found!"
 end
 
-
 function color.black
 	if not set -q color_black
 		set -U color_black "1D3232"

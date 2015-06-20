@@ -9,22 +9,22 @@ if functions -q fish_greeting
 end
 
 if not set -q sword_root
-    set -gx sword_root "$HOME/.sword"
+    if test -d (pwd)/core
+      set -gx sword_root (pwd)
+    else
+      if test -d "$HOME/.sword"
+        set -gx sword_root "$HOME/.sword"
+      end
+    end
 end
 
 if not set -q sword_core
     set -gx sword_core "$sword_root/core"
 end
 
-if test -d (pwd)/core
-  # Add sword core to fish function path
-  if not contains (pwd)/core $fish_function_path
-    set fish_function_path $fish_function_path (pwd)/core
-  end
-else
-  if not contains $sword_core $fish_function_path
+# Add sword core to fish function path
+if not contains $sword_core $fish_function_path
     set fish_function_path $fish_function_path $sword_core
-  end
 end
 
 if not set -q sword_imports

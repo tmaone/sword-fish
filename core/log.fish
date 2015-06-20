@@ -1,27 +1,27 @@
 import arg color
 #temp
 
-if not test $log_filename = 'sword-fish.log'
+if not set -q log_filename
     set -xg log_filename  'sword-fish.log'
 end
 
-if not test $log_path = '$sword_root/log'
-  set -xg log_path = '$sword_root/log'
+if not set -q log_path
+  set -xg log_path $sword_root/log
   if not test -d $log_path
     mkdir -p $log_path
   end
 end
 
-if not set -q sword_log
-    set -xg sword_log "$log_path/$log_filename"
-    if not test -f $sword_log
-      touch $sword_log
+if not set -q sword_log_file
+    set -xg sword_log_file $log_path/$log_filename
+    if not test -f $sword_log_file
+      touch $sword_log_file
     end
 end
 
-if not set -q sword_log_file
-    set -xU sword_log_file off
-end
+# if not set -q sword_log_file
+#     set -xU sword_log_file off
+# end
 
 function log.level
     if [ (count $argv) -gt 0 ]
@@ -82,7 +82,7 @@ function log.valid
     end
 end
 
-function log.file
+function ++
     if test (count $argv) = 0
         echo "$fish_log_to_file"
     end
