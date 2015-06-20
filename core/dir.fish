@@ -2,7 +2,6 @@ function dir
 
 end
 
-
 function dir.exists
   if test -d $argv
     return 0

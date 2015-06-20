@@ -4,6 +4,10 @@ function git
   end
 end
 
+function git.url
+
+end
+
 function git.init
   find.program git
 end
