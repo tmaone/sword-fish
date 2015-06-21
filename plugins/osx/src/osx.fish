@@ -44,7 +44,7 @@ function osx.maintain
     info "Flushing DNS"
     info (call $dscacheutil -flushcache | progress)
     info "Flushing LaunchServices Database"
-    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user | progress)
+    info (call /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user | progress)
     info "Repairing disk permissions"
     call $sudo $diskutil repairPermissions /
     info "Purging memory"
