@@ -126,6 +126,10 @@ function log.file
     end
 end
 
+function log.time
+  out (color normal)"["(color darkslategrey)(date.time)(color normal)"]"
+end
+
 function log
     if arg $argv
         if log.valid $argv[1]
@@ -134,25 +138,25 @@ function log
                     case info
                         info "$argv[2..-1]"
                         if log.file
-                            echo (info "$argv[2..-1]") >> $sword_log_file
+                            echo (log.time) (info "$argv[2..-1]") >> $sword_log_file
                         end
                         return 0
                     case warn
                         warn "$argv[2..-1]"
                         if log.file
-                            echo (warn "$argv[2..-1]") >> $sword_log_file
+                            echo (log.time) (warn "$argv[2..-1]") >> $sword_log_file
                         end
                         return 0
                     case debug
                         debug "$argv[2..-1]"
                         if log.file
-                            echo (debug "$argv[2..-1]") >> $sword_log_file
+                          echo (log.time) (debug "$argv[2..-1]") >> $sword_log_file
                         end
                         return 0
                     case error
                         error "$argv[2..-1]"
                         if log.file
-                            echo (error "$argv[2..-1]") >> $sword_log_file
+                          echo (log.time) (error "$argv[2..-1]") >> $sword_log_file
                         end
                         return 0
                     case '*'
