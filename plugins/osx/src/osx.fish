@@ -48,13 +48,21 @@ function osx.maintain
     /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
     info Repairing disk permissions..
     call $sudo $diskutil repairPermissions /
-    sudo purge
+    call $sudo $purge
 end
 
 function osx.periodic
     if sudo.validate
         call $sudo $periodic daily weekly monthly
     end
+end
+
+function osx.update
+  if sudo.validate
+    call $sudo $softwareupdate -iav
+  else
+    error "needs sudo persmission"
+  end
 end
 
 #

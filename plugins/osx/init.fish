@@ -9,6 +9,7 @@ function osx.init
   find.program diskutil
   find.program purge
   find.program periodic
+  find.program softwareupdate
 
   if not set -q osx
     var.global osx "$sword_plugin/osx/src/osx.fish"
