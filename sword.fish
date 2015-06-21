@@ -196,7 +196,7 @@ end
 
 # check for update
 if set -q update_count
-    if test $update_count = 3
+    if test $update_count -ge 3
         sword.update
         set -xU update_count 1
     else
