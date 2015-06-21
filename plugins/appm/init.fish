@@ -4,10 +4,10 @@ function appm.osx
     var.global appm_root "$sword_plugin/appm"
   end
 
-  if not set -q appm_exclude
-    if file.exists "$appm_root/exclude"
-      var.global appm_exlude "$appm_root/exclude"
-    end
+  if file.exists "$appm_root/exclude"
+    var.global appm_exlude (cat "$appm_root/exclude")
+  else
+    var.global appm_exlude ""
   end
 
 end

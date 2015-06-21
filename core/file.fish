@@ -16,6 +16,14 @@ function file.exists
   end
 end
 
+function file.create
+  if not file.exists $argv
+    touch $argv
+    return 0
+  else
+    return 1
+  end
+end
 
 function file.empty --description 'Show empty files '
     if  test arg.count = 1

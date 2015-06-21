@@ -15,6 +15,14 @@ function appm.help
   out.ln "  help           "
 end
 
+function appm.exclude
+  if arg $argv
+    out $argv
+  else
+    out $appm_exclude
+  end
+end
+
 function appm
 
 end
