@@ -193,3 +193,17 @@ theme.load
 if file.exists "$sword_root/user.fish"
     source "$sword_root/user.fish"
 end
+
+# check for update
+if set -q update_count
+    if test $update_count = 3
+        sword.update
+        set -xU update_count 1
+    else
+        set -xU update_count (math $update_count + 1)
+    end
+  else
+    sword.update
+    set -xU update_count 1
+  end
+end
