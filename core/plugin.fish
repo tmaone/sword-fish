@@ -15,15 +15,28 @@ function plugin.init
     set -xg sword_plugins (ls $sword_plugin)
   end
 
+  plugin.load
+
   set -xg plugin_init
 
 end
 
 function plugin
+
   if not set -q plugin_init
     plugin.init
   end
-  echo $sword_plugins
+
+  if arg $argv
+    if contains "$argv" $sword_plugins
+      return 0
+    else
+      return 1
+    end
+  else
+    out $sword_plugins
+    return 0
+  end
   # echo ""
 end
 
@@ -63,7 +76,7 @@ function plugin.unload
 end
 
 function plugin.list
-  echo $sword_plugins
+  out $sword_plugins
 end
 
 function plugin.enable
