@@ -51,25 +51,3 @@ end
 function date.timestamp
   call $date "+%Y%m%d%H%M%S"
 end
-
-function date.countdown
-
-    set -l MIN 1
-
-    if test (count $argv) = 1
-        # set MAX (math "$argv[1] * 60")
-        for i in (seq $MIN $argv[1])
-            out (color blue)"$i ";
-            sleep 1
-        end
-    out (color red)"... end"(color normal)"."
-    else
-        set MAX (math "$MIN * 3")
-        for i in (seq $MIN $MAX)
-            out (color blue)"$i ";
-            sleep 1
-        end
-        out (color red)"... end"(color normal)"."
-    end
-
-end
