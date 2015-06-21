@@ -144,7 +144,7 @@ function sword.check_update
             set -xg sword_updated
             return 1
         else
-            info "sword+fish update available... " (color tomato)"("(color darkorange)$version_local_git (color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)$version_remote_git(color palegreen)")"(color normal)
+            info "sword+fish update available... " (color tomato)"("(color darkorange)$version_local_git(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)$version_remote_git(color palegreen)")"(color normal)
             set -xg sword_updated
             return 0
         end
