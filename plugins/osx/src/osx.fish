@@ -196,7 +196,6 @@ function osx.launchd
 
 end
 
-
 function osx.battery.percent
   call $defaults read com.apple.menuextra.battery ShowPercent
 end
@@ -207,4 +206,57 @@ end
 
 function osx.battery.percent.off
   call $defaults write com.apple.menuextra.battery ShowPercent -string "NO"
+end
+
+function osx.trackpad.right-click
+  call $defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+  call $defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+  call $defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+  call $defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+end
+
+function osx.safari.clean-previews
+  call $rm -rfv $HOME/Library/Caches/com.apple.Safari/Webpage\ Previews/*
+end
+
+function osx.safari.develop
+  call $defaults write com.apple.Safari IncludeDevelopMenu -bool true
+  call $defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+  call $defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+end
+
+function osx.calendar.develop
+  call $defaults write com.apple.iCal IncludeDebugMenu -bool true
+end
+
+function osx.contacts.develop
+  call $defaults write com.apple.addressbook ABShowDebugMenu -bool true
+end
+
+function osx.diskutil.develop
+  call $defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
+end
+
+function osx.diskutil.disk-verification.on
+  call $defaults write com.apple.frameworks.diskimages skip-verify -bool false
+  call $defaults write com.apple.frameworks.diskimages skip-verify-locked -bool false
+  call $defaults write com.apple.frameworks.diskimages skip-verify-remote -bool false
+end
+
+function osx.diskutil.disk-verification.off
+  call $defaults write com.apple.frameworks.diskimages skip-verify -bool true
+  call $defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+  call $defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+end
+
+function osx.defaults
+  call $defaults $argv
+end
+
+function osx.defaults.read
+  call $defaults read $argv
+end
+
+function osx.defaults.write
+  call $defaults write $argv
 end
