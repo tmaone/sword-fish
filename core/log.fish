@@ -16,10 +16,6 @@ if not set -q sword_log_file
     end
 end
 
-# if not set -q sword_log_file
-#     set -xU sword_log_file off
-# end
-
 function log.level
     if [ (count $argv) -gt 0 ]
         switch $argv[1]

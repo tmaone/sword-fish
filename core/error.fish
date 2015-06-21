@@ -1,7 +1,11 @@
-function error
-  if arg $argv
+function error --on-event error
+  # if arg $argv
+    # echo (out.ln (color $color_error)error(color $color_normal) $argv) >&2
     out.ln (color $color_error)error(color $color_normal) $argv
-  end
+  # else
+    # echo (out.ln (color $color_error)error(color $color_normal) $argv) >&2
+    # out.ln (color $color_error)error(color $color_normal) >&2
+  # end
 end
 
 if functions -q __fish_command_not_found_handler
@@ -9,19 +13,6 @@ if functions -q __fish_command_not_found_handler
 end
 
 function error.not_found --on-event fish_command_not_found
-    echo "fish: Unknown command '$argv'" >&2
-end
-
-function error --on-event error
-    # echo error occured
-    if arg $argv
-      out.ln (color $color_error)error(color $color_normal) $argv
-    else
-      out.ln (color $color_error)error(color $color_normal)
-    end
-end
-
-function error.not_found --on-event error_not_found
     echo "fish: Unknown command '$argv'" >&2
 end
 

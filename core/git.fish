@@ -5,7 +5,13 @@ function git
 end
 
 function git.isgit
-
+  if arg.one $argv
+    if test -d $argv[1]/.git
+      return 0
+    else
+      return 1
+    end
+  end
 end
 
 function git.url

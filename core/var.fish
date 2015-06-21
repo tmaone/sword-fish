@@ -3,18 +3,36 @@ function var
 end
 
 
-function var.add
-
+function var.set
+  if arg.two $argv
+    var.global $argv[1] $argv[2..-1]
+    echo $argv[1] "--" "$argv[2..-1]"
+  end
 end
 
 function var.get
+  if arg.one $argv
+    out $$argv[1]
+  end
+end
 
+function var.query
+  if arg.one $argv
+    if set -q $argv[1]
+      return 0
+    else
+      return 1
+    end
+  end
 end
 
 function var.remove
-
+  if arg.one $argv
+    if var.query $argv[1]
+      set -e $argv[1]
+    end
+  end
 end
-
 
 function var.default
   set -U -- $argv

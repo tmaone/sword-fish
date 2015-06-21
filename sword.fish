@@ -29,6 +29,37 @@ end
 
 import core
 
+function sword.version
+  if git.isgit $sword_root
+    wd.save
+    cd $sword_root
+    set -l sword_version (git describe --tags --always)
+    out $sword_version
+    wd.cd
+  end
+end
+
+function sword.version.git
+        if git.isgit $sword_root
+            wd.save
+            cd $sword_root
+            set -l sword_version_git (git rev-parse --short HEAD)
+            out $sword_version_git
+            wd.cd
+        end
+end
+
+function sword.version.package
+    if test -f $sword_root/version
+        set -l sword_version_package (cat $sword_root/version)
+        out $sword_version_package
+    end
+end
+
+var.global sword_version (sword.version)
+
+plugin.load
+
 # if not set -q sword_imports
 # import arg array color debug error info log out warn
 # end
