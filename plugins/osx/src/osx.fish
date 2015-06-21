@@ -139,7 +139,7 @@ end
 function osx.launchd.start
 if sudo.validate
   if arg $argv
-    call $sudo $launchctl start $osx_launchd_path/$argv.plist
+    call $sudo $launchctl start $osx_launchd_path/$argv
   else
 
   end
@@ -151,7 +151,7 @@ end
 function osx.launchd.stop
 if sudo.validate
   if arg $argv
-    call $sudo $launchctl stop $osx_launchd_path/$argv.plist
+    call $sudo $launchctl stop $osx_launchd_path/$argv
   else
 
   end
@@ -194,4 +194,17 @@ function osx.launchd
       end
     end
 
+end
+
+
+function osx.battery.percent
+  call $defaults read com.apple.menuextra.battery ShowPercent
+end
+
+function osx.battery.percent.on
+  call $defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+end
+
+function osx.battery.percent.off
+  call $defaults write com.apple.menuextra.battery ShowPercent -string "NO"
 end
