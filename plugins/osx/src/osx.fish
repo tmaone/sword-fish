@@ -106,33 +106,33 @@ end
 # end
 
 
-import arg sudo
-
-function osx --description 'Evaluates the command if the current OS is MacOS'
-    if set -q OS
-        if test $OS = "darwin"
-            if arg.has_args $argv
-                eval $argv
-            end
-            return 0
-        else
-            return 1
-        end
-    else
-        return 1
-    end
-end
-
-function osx.reset_launchpad
-    echo not working in yosemite
-    # if not test -z (ls ~/library/Application\ Support/Dock/*.db 2> /dev/null)
-    #     echo deleting
-    #     rm -v ~/library/Application\ Support/Dock/*.db
-    # else
-    # echo nothing to delete
-    # end
-    # kill.dock
-end
+# import arg sudo
+#
+# function osx --description 'Evaluates the command if the current OS is MacOS'
+#     if set -q OS
+#         if test $OS = "darwin"
+#             if arg.has_args $argv
+#                 eval $argv
+#             end
+#             return 0
+#         else
+#             return 1
+#         end
+#     else
+#         return 1
+#     end
+# end
+#
+# function osx.reset_launchpad
+#     echo not working in yosemite
+#     # if not test -z (ls ~/library/Application\ Support/Dock/*.db 2> /dev/null)
+#     #     echo deleting
+#     #     rm -v ~/library/Application\ Support/Dock/*.db
+#     # else
+#     # echo nothing to delete
+#     # end
+#     # kill.dock
+# end
 
 # TODO perhaps integrate with lunchy (ls, etc)
 #
