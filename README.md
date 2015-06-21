@@ -1,4 +1,4 @@
-![sword-fish logo](doc/logo.png)
+![sword-fish logo](doc/sword-fish.png)
 
 sword-fish
 ==========

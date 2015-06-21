@@ -56,6 +56,34 @@ function sword.version.package
     end
 end
 
+#                                 .___              _____.__       .__
+#   ________  _  _____________  __| _/    .__     _/ ____\__| _____|  |__  __
+#  /  ___/\ \/ \/ /  _ \_  __ \/ __ |   __|  |___ \   __\|  |/  ___/  |  \ \ \
+#  \___ \  \     (  <_> )  | \/ /_/ |  /__    __/  |  |  |  |\___ \|   Y  \ \ \
+# /____  >  \/\_/ \____/|__|  \____ |     |__|     |__|  |__/____  >___|  / / /
+#      \/                          \/                            \/     \/ /_/
+function sword.logo
+    function sword
+        color lightblue
+    end
+    function plus
+        color tomato
+    end
+    function fish
+        color yellowgreen
+    end
+    function arrow
+        color dimgrey
+    end
+    # out.ln ""
+    out.ln (sword)"                                .___"(plus)"           "(fish)"  _____.__       .__ "(arrow)""
+    out.ln (sword)"  ________  _  _____________  __| _/"(plus)"   .__     "(fish)"_/ ____\__| _____|  |__ "(arrow)" __"
+    out.ln (sword)" /  ___/\ \/ \/ /  _ \_  __ \/ __ | "(plus)" __|  |___ "(fish)"\   __\|  |/  ___/  |  \ "(arrow)"\ \ "
+    out.ln (sword)" \___ \  \     (  <_> )  | \/ /_/ | "(plus)"/__    __/ "(fish)" |  |  |  |\___ \|   Y  \ "(arrow)"\ \ "
+    out.ln (sword)"/____  >  \/\_/ \____/|__|  \____ | "(plus)"   |__|    "(fish)" |__|  |__/____  >___|  / "(arrow)"/ /"
+    out.ln (sword)"     \/                          \/ "(plus)"           "(fish)"               \/     \/ "(arrow)"/_/"
+end
+
 var.global sword_version (sword.version)
 
 plugin.load
@@ -79,7 +107,8 @@ plugin.load
 # end
 
 function sword
-  arg.count $argv
+  sword.logo
+  # arg.count $argv
   # color.demo
   # echo "Sword-Fish"
   # echo $sword_version`
