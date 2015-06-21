@@ -18,11 +18,11 @@ function core.init
 
     import color
 
+    import find
+
     import in out
 
     import log
-
-    import find
 
     import profile
 

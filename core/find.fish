@@ -1,15 +1,39 @@
 function find.init
-  # if not set -q found
-  set -xg which (which which)
-  set -xg found "which"
-  # end
+
+  if not set -q find_init
+    set -xg which (which which)
+    set -xg found "which"
+    find.program find
+    set -xg find_init "done"
+  end
+
 end
 
 function find
-    if arg $argv
-      /usr/bin/find $argv
+
+    if not set -q find_init
+      find.init
     end
+
+    if arg $argv
+      call $find $argv
+    end
+
 end
+
+function find.path
+    # echo $argv
+    if arg.one $argv
+      call $which -a "$argv[1]"
+    end
+      # for path in $PATH
+        # out $path
+        # if test -f $path/$argv[1]
+          # out "$path/$argv[1] "
+        # end
+      # end
+end
+
 
 function find.program
 
@@ -17,14 +41,16 @@ function find.program
       set -l find_program "$argv[1]"
       # debug "find.program: [$found] [$find_program]"
       if not contains $find_program $found
-        set -l find_bin (eval $which $find_program)
+        set -l find_bin (eval find.path $find_program)
         # debug "find.program: adding $argv[1] with $find_bin"
-        if not test -z $find_bin
+        if test (count $find_bin) -eq 1
           set -xg $find_program $find_bin
           set -xg found $found $find_program
-          # debug "find.program: $find_program $find_bin [$found]"
-        else
-          # debug "find.program: $find_program : $find_bin"
+          debug "find.program: $find_program -> [$find_bin]"
+        else if test (count $find_bin) -gt 1
+          set -xg $find_program $find_bin[1]
+          set -xg found $found $find_program
+          debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
         end
       else
         # debug "find.program: $find_program contains $found"
@@ -59,14 +85,14 @@ function find.program
     # end
 end
 
-function find.path
+# function find.path
+#
+# end
+# #
+# function find.file
+#
+# end
 
-end
-
-function find.file
-
-end
-
-function find.directory
-
-end
+# function find.directory
+#
+# end
