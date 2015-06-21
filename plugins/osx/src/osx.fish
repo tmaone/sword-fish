@@ -73,7 +73,7 @@ function osx.logout
   call $osascript -e 'tell application "System Events" to log out'
 end
 
-function os.restart
+function osx.restart
     # if sudo.validate
     #     sudo shutdown -r now
     # end
