@@ -73,7 +73,7 @@ function core.init
     import wd
 
     set -xg sword_core_init "done"
-    debug "core.init done"
+    # debug "core.init done"
 
   end
 
