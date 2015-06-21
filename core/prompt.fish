@@ -45,7 +45,7 @@ function prompt.load
   for prompt in $sword_prompts
     if file.exists "$sword_prompt/$prompt/$prompt.prompt"
       source "$sword_prompt/$prompt/$prompt.prompt"
-      debug "$sword_prompt/$prompt/$prompt.prompt"
+      # debug "$sword_prompt/$prompt/$prompt.prompt"
     end
   end
 end

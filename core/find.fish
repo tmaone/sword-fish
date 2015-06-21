@@ -46,11 +46,11 @@ function find.program
         if test (count $find_bin) -eq 1
           set -xg $find_program $find_bin
           set -xg found $found $find_program
-          debug "find.program: $find_program -> [$find_bin]"
+          # debug "find.program: $find_program -> [$find_bin]"
         else if test (count $find_bin) -gt 1
           set -xg $find_program $find_bin[1]
           set -xg found $found $find_program
-          debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
+          # debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
         end
       else
         # debug "find.program: $find_program contains $found"

@@ -98,28 +98,6 @@ function sword.logo
     out.ln (sword)"     \/                          \/ "(plus)"           "(fish)"               \/     \/ "(arrow)"/_/"
 end
 
-var.global sword_version (sword.version)
-
-plugin.load
-
-# if not set -q sword_imports
-# import arg array color debug error info log out warn
-# end
-#
-# Add sword core to fish function path
-# if contains $sword_core $fish_function_path
-#   set -l idx (contains --index $sword_core $fish_function_path)
-#   set -e fish_function_path[$idx]
-# end
-
-# if not set -q sword_version
-#   set -xg sword_version (cat version)
-# end
-
-# if not set -q sword_core
-#     set -xg sword_core arg array call clock color commands counter debug dev directory direnv disk edit error file find fn fun git host import locate log net os osx path plugin profile progress prompt setting src string sudo user uuid var wd
-# end
-
 function fish_greeting
     sword.logo
 end
@@ -159,10 +137,10 @@ function sword.check_update
             set version_remote_git (sword.version.git)
         end
 
-        debug "sword+fish ("$version_local_git")~>("$version_remote_git")"
+        # debug "sword+fish ("$version_local_git")~>("$version_remote_git")"
 
         if string.equals "$version_local_git" "$version_remote_git"
-            info 'sword+fish is up-to-date..'
+            info 'sword+fish is up-to-date... ('$version_local_git)') '
             set -xg sword_updated
             return 1
         else
@@ -180,10 +158,6 @@ function sword.update
         call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull
         reload
     end
-end
-
-function sword
-
 end
 
 function on_pwd -v PWD
@@ -204,24 +178,18 @@ function on_exit --on-process %self
     out 'done'
 end
 
+function sword
 
-# function sword.version
-#     printf "%s %s" (sword.version.package) (sword.version.git)
-# end
-#
-# function sword.version.git
-#         if test -d $sword_root/.git
-#             wd.save
-#             cd $sword_root
-#             set -xg sword_version_git (git rev-parse --short HEAD)
-#             printf "%s" $sword_version_git
-#             wd.cd
-#         end
-# end
-#
-# function sword.version.package
-#     if test -f $sword_rootot/version
-#         set -xg sword_version_package (cat $sword_root/version)
-#         printf "%s" $sword_version_package
-#     end
-# end
+end
+
+var.global sword_version (sword.version)
+
+plugin.load
+
+prompt.load
+
+theme.load
+
+if file.exists "$sword_root/user.fish"
+    source "$sword_root/user.fish"
+end
