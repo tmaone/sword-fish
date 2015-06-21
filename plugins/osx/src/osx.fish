@@ -109,57 +109,72 @@ function osx.kill.finder
 end
 
 # TODO perhaps integrate with lunchy (ls, etc)
-#
-# set -xg osx_launchd_path "/Library/LaunchDaemons/"
-#
-# function osx.launchd.load
-#     sudo.validate
-#     sudo launchctl load -w $osx_launchd_path/$argv
-# end
-#
-# function osx.launchd.unload
-#     sudo.validate
-#     sudo launchctl unload -w $osx_launchd_path/$argv
-# end
-#
-# function osx.launchd.start
-#     sudo.validate
-#     sudo launchctl start $osx_launchd_path/$argv
-# end
-#
-# function osx.launchd.stop
-#     sudo.validate
-#     sudo launchctl stop $osx_launchd_path/$argv
-# end
-#
-# function osx.launchd
-#     # echo $argv
-#     if arg.two $argv
-#         # echo two
-#         switch $argv[1];
-#           case "load"
-#             osx.launchd.load $argv[2]
-#           case 'unload'
-#             osx.launchd.unload $argv[2]
-#           case 'start'
-#             osx.launchd.start $argv[2]
-#           case 'stop'
-#             osx.launchd.stop $argv[2]
-#           case '*';
-#             # commands;
-#         end
-#     end
-# end
-#
 
+set -xg osx_launchd_path "/Library/LaunchDaemons/"
 
+function osx.launchd.load
+    if sudo.validate
+      if arg $argv
+        call $sudo $launchctl load -w $osx_launchd_path/$argv.plist
+      else
 
-# function os.update
-#     sudo.validate
-#     sudo softwareupdate -iav
-#     sudo.invalidate
-#     brew update -vvv
-#     brew upgrade -vvv
-#     fish.update
-#     sword.update
-# end
+      end
+    else
+      error "needs sudo rights"
+    end
+end
+
+function osx.launchd.unload
+if sudo.validate
+  if arg $argv
+    call $sudo $launchctl unload -w $osx_launchd_path/$argv.plist
+  else
+
+  end
+  else
+    error "needs sudo rights"
+  end
+end
+
+function osx.launchd.start
+if sudo.validate
+  if arg $argv
+    call $sudo $launchctl start $osx_launchd_path/$argv.plist
+  else
+
+  end
+  else
+    error "needs sudo rights"
+  end
+end
+
+function osx.launchd.stop
+if sudo.validate
+  if arg $argv
+    call $sudo $launchctl stop $osx_launchd_path/$argv.plist
+  else
+
+  end
+  else
+    error "needs sudo rights"
+  end
+end
+
+function osx.launchd
+    # echo $argv
+    if arg.two $argv
+        # echo two
+        switch $argv[1];
+          case "load"
+            osx.launchd.load $argv[2]
+          case 'unload'
+            osx.launchd.unload $argv[2]
+          case 'start'
+            osx.launchd.start $argv[2]
+          case 'stop'
+            osx.launchd.stop $argv[2]
+          case '*';
+            # commands;
+        end
+    end
+end
