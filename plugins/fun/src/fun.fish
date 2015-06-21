@@ -7,5 +7,5 @@ function fun.roman
 end
 
 function fun.busy
-    call $cat /dev/urandom | call $hexdump -C | call $grep --color=auto "ca fe"
+   cat /dev/urandom | hexdump -C | grep --color=auto "ca fe"
 end
