@@ -14,6 +14,9 @@ function osx.init
   find.program tail
   find.program dscacheutil
   find.program launchctl
+  find.program scutil
+
+  var.global PlistBuddy "/usr/libexec/PlistBuddy"
 
   if not set -q osx
     var.global osx "$sword_plugin/osx/src/osx.fish"

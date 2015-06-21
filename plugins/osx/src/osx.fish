@@ -45,6 +45,8 @@ function osx.maintain
     info (call $dscacheutil -flushcache | progress)
     info "Flushing LaunchServices Database"
     info (call /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user | progress)
+    info "Verifying disk"
+    call $sudo $diskutil verifyVolume /
     info "Repairing disk permissions"
     call $sudo $diskutil repairPermissions /
     info "Purging memory"
@@ -106,6 +108,30 @@ end
 
 function osx.kill.finder
   call $killall -HUP "Finder" > /dev/null 2>&1
+end
+
+function osx.kill.calendar
+  call $killall -HUP "Calendar" > /dev/null 2>&1
+end
+
+function osx.kill.contacts
+  call $killall -HUP "Contacts" > /dev/null 2>&1
+end
+
+function osx.kill.itunes
+  call $killall -HUP "iTunes" > /dev/null 2>&1
+end
+
+function osx.kill.mail
+  call $killall -HUP "Mail" > /dev/null 2>&1
+end
+
+function osx.kill.safari
+  call $killall -HUP "Safari" > /dev/null 2>&1
+end
+
+function osx.kill.windowserver
+  call $killall -HUP "WindowServer" > /dev/null 2>&1
 end
 
 # TODO perhaps integrate with lunchy (ls, etc)
@@ -209,10 +235,16 @@ function osx.battery.percent.off
 end
 
 function osx.trackpad.right-click
-  call $defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-  call $defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-  call $defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-  call $defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+  osx.defaults.write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+  osx.defaults.write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+  osx.defaults.write.currenthost NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+  osx.defaults.write.currenthost NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+end
+
+function osx.trackpad.tap-click
+  osx.defaults.write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  osx.defaults.write.currenthost NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  osx.defaults.write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 end
 
 function osx.safari.clean-previews
@@ -224,6 +256,15 @@ function osx.safari.develop
   call $defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
   call $defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
 end
+
+function osx.safari.webgl.on
+  osx.defaults.write com.apple.Safari WebKitWebGLEnabled -bool YES
+end
+
+function osx.safari.webgl.off
+  osx.defaults.write com.apple.Safari WebKitWebGLEnabled -bool NO
+end
+
 
 function osx.calendar.develop
   call $defaults write com.apple.iCal IncludeDebugMenu -bool true
@@ -259,4 +300,173 @@ end
 
 function osx.defaults.write
   call $defaults write $argv
+end
+
+function osx.defaults.write.currenthost
+  call $defaults -currentHost write $argv
+end
+
+function osx.dock.light.on
+  osx.defaults.write com.apple.dock show-process-indicators -bool true
+end
+
+function osx.dock.light.off
+  osx.defaults.write com.apple.dock show-process-indicators -bool false
+end
+
+
+function osx.autocorrect.on
+  osx.defaults.write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
+end
+
+
+function osx.autocorrect.off
+  osx.defaults.write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+end
+
+function osx.finder.extensions.on
+  osx.defaults.write NSGlobalDomain AppleShowAllExtensions -bool true
+end
+
+
+function osx.finder.extensions.off
+  osx.defaults.write NSGlobalDomain AppleShowAllExtensions -bool false
+end
+
+
+function osx.finder.fullpath.on
+  osx.defaults.write com.apple.finder _FXShowPosixPathInTitle -bool true
+end
+
+
+function osx.finder.fullpath.off
+  osx.defaults.write com.apple.finder _FXShowPosixPathInTitle -bool false
+end
+
+
+function osx.finder.quit.on
+  osx.defaults.write com.apple.finder QuitMenuItem -bool true
+end
+
+
+function osx.finder.quit.off
+  osx.defaults.write com.apple.finder QuitMenuItem -bool false
+end
+
+function osx.finder.statusbar.on
+  osx.defaults.write com.apple.finder ShowStatusBar -bool true
+end
+
+
+function osx.finder.statusbar.off
+  osx.defaults.write com.apple.finder ShowStatusBar -bool false
+end
+
+function osx.finder.show
+  osx.defaults.write com.apple.finder AppleShowAllFiles TRUE
+end
+
+function osx.finder.hide
+  osx.defaults.write com.apple.finder AppleShowAllFiles FALSE
+end
+
+function osx.finder.secure-empty.on
+  osx.defaults.write com.apple.finder EmptyTrashSecurely -bool true
+end
+
+function osx.finder.secure-empty.off
+  osx.defaults.write com.apple.finder EmptyTrashSecurely -bool false
+end
+
+function osx.finder.warn-empty.on
+  osx.defaults.write com.apple.finder WarnOnEmptyTrash -bool true
+end
+
+function osx.finder.warn-empty.off
+  osx.defaults.write com.apple.finder WarnOnEmptyTrash -bool false
+end
+
+function osx.finder.warn-extension.on
+  osx.defaults.write com.apple.finder FXEnableExtensionChangeWarning -bool true
+end
+
+function osx.finder.warn-extension.off
+  osx.defaults.write com.apple.finder FXEnableExtensionChangeWarning -bool false
+end
+
+function osx.library.show
+  call $chflags nohidden "~/library"
+end
+
+function osx.library.hide
+  call $chflags hidden "~/library"
+end
+
+function osx.key.repeat.on
+  osx.defaults.write -g ApplePressAndHoldEnabled -bool true
+end
+
+function osx.key.repeat.off
+  osx.defaults.write -g ApplePressAndHoldEnabled -bool false
+end
+
+function osx.dock.launch-animation.on
+  osx.defaults.write com.apple.dock launchanim -bool true
+end
+
+function osx.dock.launch-animation.off
+  osx.defaults.write com.apple.dock launchanim -bool false
+end
+
+function osx.natural-scroll.on
+     osx.defaults.write NSGlobalDomain com.apple.swipescrolldirection -bool true
+end
+
+function osx.natural-scroll.off
+    osx.defaults.write NSGlobalDomain com.apple.swipescrolldirection -bool false
+end
+
+
+function osx.snap-to-grid
+  # Enable snap-to-grid for icons on the desktop and in other icon views
+call $PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/library/Preferences/com.apple.finder.plist
+call $PlistBuddy -c  "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/library/Preferences/com.apple.finder.plist
+call $PlistBuddy -c  "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/library/Preferences/com.apple.finder.plist
+end
+
+
+function osx.time-machine.on
+  call $sudo $tmutil enable;
+end
+
+function osx.time-machine.off
+  call $sudo $tmutil disable;
+end
+
+function osx.time-machine.enable-local
+  call $sudo $tmutil enablelocal
+end
+
+function osx.time-machine.disable-local
+  call $sudo $tmutil disablelocal;
+end
+
+function osx.time-machine.list
+  call $sudo $tmutil listbackups;
+end
+
+function osx.time-machine.start
+  call $sudo $tmutil startbackup;
+end
+
+function osx.time-machine.stop
+  call $sudo $tmutil stopbackup;
+end
+
+function osx.time-machine.exclude
+  call $sudo $tmutil addexclusion $argv;
+end
+
+function osx.computer-name
+  call $scutil --get ComputerName
 end
