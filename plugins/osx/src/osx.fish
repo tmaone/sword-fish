@@ -176,5 +176,15 @@ function osx.launchd
           case '*';
             # commands;
         end
+    else
+      if arg.one $argv
+      switch $argv[1];
+        case "list"
+          osx.launchd.list
+        case '*';
+          # commands;
+      end
+      end
     end
+
 end
