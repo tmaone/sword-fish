@@ -1,3 +1,10 @@
+function osx.power
+  set -l max (ioreg -l | fgrep MaxCapacity | cut -d= -f2 | tr -d " ");
+  set -l cur (ioreg -l | fgrep CurrentCapacity | cut -d= -f2 | tr -d " ");
+  set battery (awk -v "a=$max" -v "b=$cur" 'BEGIN{printf("%.2f%%", b/a * 100)}');
+  out (color lightskyblue)"$battery"(color normal)
+end
+
 # function net.airport
 #     if sudo.validate
 #         if test -x /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport
@@ -128,7 +135,7 @@ function osx.reset_launchpad
 end
 
 # TODO perhaps integrate with lunchy (ls, etc)
-# 
+#
 # set -xg osx_launchd_path "/Library/LaunchDaemons/"
 #
 # function osx.launchd.load
