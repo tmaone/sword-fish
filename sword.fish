@@ -106,8 +106,12 @@ plugin.load
 #     set -xg sword_core arg array call clock color commands counter debug dev directory direnv disk edit error file find fn fun git host import locate log net os osx path plugin profile progress prompt setting src string sudo user uuid var wd
 # end
 
+function fish_greeting
+    sword.logo
+end
+
 function sword
-  sword.logo
+  # sword.logo
   # arg.count $argv
   # color.demo
   # echo "Sword-Fish"
