@@ -12,6 +12,7 @@ function osx.init
   find.program softwareupdate
   find.program osascript
   find.program tail
+  find.program dscacheutil
 
   if not set -q osx
     var.global osx "$sword_plugin/osx/src/osx.fish"

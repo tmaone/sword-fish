@@ -25,35 +25,38 @@ function osx.airportd
             error "airportd utility not found"
         end
     else
-    error "needs sudo privileges"
+      error "needs sudo privileges"
     end
 end
 
 function osx.maintain
     sudo.validate
     info Executing Periodic Scripts
-    osx.periodic
-    info Flushing home logs..
-    call $rm -rfv $HOME/library/Logs/*/
-    call $rm -rfv $HOME/library/Logs/*
-    info Flushing Safari downloads list
-    call $rm -rfv $HOME/library/Safari/Downloads.plist
-    info Emptying library caches
-    call $rm -rfv ~/library/Caches/*
-    info Flushing DNS
-    dscacheutil -flushcache
-    info Emptying System caches
-    call $sudo $rm -rfv /Library/Caches/*
-    info Flushing LaunchServices Database
-    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-    info Repairing disk permissions..
+    info (osx.periodic | progress)
+    info "Flushing home logs [$HOME/library/Logs/*/] [$HOME/library/Logs/*]"
+    info (call $rm -rfv $HOME/library/Logs/*/ | progress)
+    info (call $rm -rfv $HOME/library/Logs/* | progress)
+    info "Flushing Safari downloads list [$HOME/library/Safari/Downloads.plist]"
+    info (call $rm -rfv $HOME/library/Safari/Downloads.plist | progress)
+    info "Emptying library & System caches [~/library/Caches/*] [/Library/Caches/*]"
+    info (call $rm -rfv ~/library/Caches/* | progress)
+    info (call $sudo $rm -rfv /Library/Caches/* | progress)
+    info "Flushing DNS"
+    info (call $dscacheutil -flushcache | progress)
+    info "Flushing LaunchServices Database"
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user | progress)
+    info "Repairing disk permissions"
     call $sudo $diskutil repairPermissions /
-    call $sudo $purge
+    info "Purging memory"
+    info (call $sudo $purge | progress)
 end
 
 function osx.periodic
     if sudo.validate
         call $sudo $periodic daily weekly monthly
+        return 0
+    else
+      return 1
     end
 end
 
