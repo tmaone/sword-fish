@@ -17,48 +17,46 @@ function osx.airport
     end
 end
 
+function osx.airportd
+    if sudo.validate
+        if test -x /usr/libexec/airportd
+            sudo /usr/libexec/airportd $argv
+        else
+            error "airportd utility not found"
+        end
+    else
+    error "needs sudo privileges"
+    end
+end
 
-#
-# function net.airportd
-#     if sudo.validate
-#         if test -x /usr/libexec/airportd
-#             sudo /usr/libexec/airportd $argv
-#         else
-#             log.error "airportd utility not found"
-#         end
-#     else
-#         log.error net.airportd needs sudo privileges
-#     end
-# end
+function osx.maintain
+    sudo.validate
+    info Executing Periodic Scripts
+    osx.periodic
+    info Flushing home logs..
+    call $rm -rfv $HOME/library/Logs/*/
+    call $rm -rfv $HOME/library/Logs/*
+    info Flushing Safari downloads list
+    call $rm -rfv $HOME/library/Safari/Downloads.plist
+    info Emptying library caches
+    call $rm -rfv ~/library/Caches/*
+    info Flushing DNS
+    dscacheutil -flushcache
+    info Emptying System caches
+    call $sudo $rm -rfv /Library/Caches/*
+    info Flushing LaunchServices Database
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+    info Repairing disk permissions..
+    call $sudo $diskutil repairPermissions /
+    sudo purge
+end
 
-#
-# import sudo log
-#
-# function os
-#
-# end
-#
-# function os.clean
-#     sudo.validate
-#     log.info  Executing Periodic Scripts..
-#     os.periodic
-#     log.info Flushing home logs..
-#     rm -rfv $HOME/library/Logs/*/
-#     rm -rfv $HOME/library/Logs/*
-#     log.info Flushing Safari downloads list..
-#     rm -rfv $HOME/library/Safari/Downloads.plist
-#     log.info Emptying library caches..
-#     rm -rfv ~/library/Caches/*
-#     log.info Flushing DNS..
-#     dscacheutil -flushcache
-#     log.info Emptying System caches..
-#     sudo rm -rfv /Library/Caches/*
-#     log.info Flushing LaunchServices Database..
-#     /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-#     log.info Repairing disk permissions..
-#     sudo diskutil repairPermissions /
-#     sudo purge
-# end
+function osx.periodic
+    if sudo.validate
+        call $sudo $periodic daily weekly monthly
+    end
+end
+
 #
 # function os.update
 #     sudo.validate
