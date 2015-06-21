@@ -169,11 +169,7 @@ function sword.update
 end
 
 function sword
-  # sword.logo
-  # arg.count $argv
-  # color.demo
-  # echo "Sword-Fish"
-  # echo $sword_version`
+  
 end
 
 function on_pwd -v PWD
