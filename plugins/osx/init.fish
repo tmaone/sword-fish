@@ -23,7 +23,7 @@ function osx.init
   end
 
   if file.exists $osx
-    source $osx
+    builtin source $osx
   end
 
 end

@@ -191,7 +191,7 @@ prompt.load
 theme.load
 
 if file.exists "$sword_root/user.fish"
-    source "$sword_root/user.fish"
+    builtin source "$sword_root/user.fish"
 end
 
 # check for update

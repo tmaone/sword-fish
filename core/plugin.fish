@@ -45,7 +45,7 @@ function plugin.load
     for plugin in $argv
       if file.exists "$sword_plugin/$plugin/.enabled"
         if file.exists "$sword_plugin/$plugin/init.fish"
-          source "$sword_plugin/$plugin/init.fish"
+          builtin source "$sword_plugin/$plugin/init.fish"
         end
         if dir.exists "$sword_plugin/$plugin/src"
           fn.path.add "$sword_plugin/$plugin/src"
@@ -56,7 +56,7 @@ function plugin.load
     for plugin in $sword_plugins
       if file.exists "$sword_plugin/$plugin/.enabled"
         if file.exists "$sword_plugin/$plugin/init.fish"
-          source "$sword_plugin/$plugin/init.fish"
+          builtin source "$sword_plugin/$plugin/init.fish"
         end
         if dir.exists "$sword_plugin/$plugin/src"
           fn.path.add "$sword_plugin/$plugin/src"
