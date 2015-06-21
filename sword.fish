@@ -110,6 +110,64 @@ function fish_greeting
     sword.logo
 end
 
+function sword.root
+    out $sword_root
+end
+
+function sword.load.progress.on
+    set -xU sword_load_progress
+end
+
+function sword.load.progress.off
+    set -e sword_load_progress
+end
+
+
+function sword.load.progress
+    if set -q sword_load_progress
+        return 0
+    else
+        return 1
+    end
+end
+
+function sword.check_update
+    # debug set -q sword_updated | progress
+    #
+    # if not set -q sword_updated
+
+        set -l version_local_git (sword.version.git)
+        set -l version_remote_git ''
+
+        if net.connected
+            set version_remote_git (git --git-dir="$sword_root/.git" --work-tree="$sword_root" ls-remote origin HEAD | grep HEAD | cut -c 1-7)
+        else
+            set version_remote_git (sword.version.git)
+        end
+
+        debug "sword+fish ("$version_local_git")~>("$version_remote_git")"
+
+        if string.equals "$version_local_git" "$version_remote_git"
+            info 'sword+fish is up-to-date..'
+            set -xg sword_updated
+            return 1
+        else
+            info "sword+fish update available... ("$version_local_git")~>("$version_remote_git")"
+            set -xg sword_updated
+            return 0
+        end
+    # else
+        # return 1
+    # end
+end
+
+function sword.update
+    if sword.check_update
+        call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull
+        reload
+    end
+end
+
 function sword
   # sword.logo
   # arg.count $argv
@@ -117,7 +175,24 @@ function sword
   # echo "Sword-Fish"
   # echo $sword_version`
 end
-# echo ha
+
+function on_pwd -v PWD
+
+    if not set -q sword_pwd
+        set -xg sword_pwd (wd.get)
+    end
+
+    if not test $PWD = "$sword_pwd"
+        path.remove "$sword_pwd"
+        path.add (wd.get)
+        set -xg sword_pwd (wd.get)
+    end
+
+end
+
+function on_exit --on-process %self
+    out 'done'
+end
 
 
 # function sword.version
