@@ -50,6 +50,8 @@ function core.init
 
     import prompt
 
+    import theme
+
     import setting
 
     import src

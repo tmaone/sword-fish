@@ -49,6 +49,20 @@ function sword.version.git
         end
 end
 
+function sword.version.remote
+        if git.isgit $sword_root
+            wd.save
+            cd $sword_root
+            if net.connected
+                set sword_version_remote (git --git-dir="$sword_root/.git" --work-tree="$sword_root" ls-remote origin HEAD | grep HEAD | cut -c 1-7)
+            else
+                set sword_version_remote (sword.version.git)
+            end
+            out $sword_version_remote
+            wd.cd
+        end
+end
+
 function sword.version.package
     if test -f $sword_root/version
         set -l sword_version_package (cat $sword_root/version)
@@ -169,7 +183,7 @@ function sword.update
 end
 
 function sword
-  
+
 end
 
 function on_pwd -v PWD

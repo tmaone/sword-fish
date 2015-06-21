@@ -57,7 +57,7 @@ end
 function prompt.enable
   if arg.one $argv
     if contains "$argv" $sword_prompts
-      prompt.set "$sword_plugin/$argv/.enabled"
+      prompt.set "$argv"
     end
   end
 end
