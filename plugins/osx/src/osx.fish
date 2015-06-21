@@ -1,21 +1,23 @@
 function osx.power
   set -l max (ioreg -l | fgrep MaxCapacity | cut -d= -f2 | tr -d " ");
   set -l cur (ioreg -l | fgrep CurrentCapacity | cut -d= -f2 | tr -d " ");
-  set battery (awk -v "a=$max" -v "b=$cur" 'BEGIN{printf("%.2f%%", b/a * 100)}');
+  set -l battery (awk -v "a=$max" -v "b=$cur" 'BEGIN{printf("%.2f%%", b/a * 100)}');
   out (color lightskyblue)"$battery"(color normal)
 end
 
-# function net.airport
-#     if sudo.validate
-#         if test -x /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport
-#             sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport $argv
-#         else
-#             log.error "airport utility not found"
-#         end
-#     else
-#         log.error net.airport needs sudo privileges
-#     end
-# end
+function osx.airport
+    if sudo.validate
+        if test -x /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport
+            sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport $argv
+        else
+            error "airport utility not found"
+        end
+    else
+        error "needs sudo privileges"
+    end
+end
+
+
 #
 # function net.airportd
 #     if sudo.validate
