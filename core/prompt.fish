@@ -9,16 +9,21 @@ function prompt.init
   end
 
   if dir.exists $sword_prompt
-    set -xg sword_prompts (ls $sword_prompt/*.prompt)
+    set -xg sword_prompts (ls $sword_prompt)
   end
 
   prompt.load
+
+  if not prompt.set
+    prompt.set $sword_prompts[1]
+  end
 
   set -xg prompt_init
 
 end
 
 function prompt
+
   if not set -q plugin_init
     prompt.init
   end
@@ -38,30 +43,38 @@ end
 
 function prompt.load
   for prompt in $sword_prompts
-
-  # if arg $argv
-    # if file.exists "$sword_prompt/$plugin/.enabled"
-  #   for prompt in $argv
-  #     if file.exists "$sword_prompt/$plugin/.enabled"
-  #       if file.exists "$sword_plugin/$plugin/init.fish"
-  #         source "$sword_plugin/$plugin/init.fish"
-  #       end
-  #       if dir.exists "$sword_plugin/$plugin/src"
-  #         fn.path.add "$sword_plugin/$plugin/src"
-  #       end
-  #     end
-  #   end
-  # else
-  #   for plugin in $sword_plugins
-  #     if file.exists "$sword_plugin/$plugin/.enabled"
-  #       if file.exists "$sword_plugin/$plugin/init.fish"
-  #         source "$sword_plugin/$plugin/init.fish"
-  #       end
-  #       if dir.exists "$sword_plugin/$plugin/src"
-  #         fn.path.add "$sword_plugin/$plugin/src"
-  #       end
-  #     end
-  #   end
+    if file.exists "$sword_prompt/$prompt/$prompt.prompt"
+      source "$sword_prompt/$prompt/$prompt.prompt"
+      debug "$sword_prompt/$prompt/$prompt.prompt"
+    end
   end
+end
 
+function prompt.list
+  out $sword_prompts
+end
+
+function prompt.enable
+  if arg.one $argv
+    if contains "$argv" $sword_prompts
+      prompt.set "$sword_plugin/$argv/.enabled"
+    end
+  end
+end
+
+function prompt.set
+  if arg.one $argv
+    if contains $argv[1] $sword_prompts
+      var.global prompt "$argv[1].prompt"
+      function fish_prompt
+        eval $prompt
+      end
+    end
+  else
+    if set -q prompt
+      return 0
+    else
+      return 1
+    end
+  end
 end
