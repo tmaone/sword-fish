@@ -1,5 +1,5 @@
 function fn
-    if arg.has_args $argv
+    if arg $argv
         builtin function $argv
     end
 end

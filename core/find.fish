@@ -89,10 +89,11 @@ end
 #
 # end
 # #
-# function find.file
-#
-# end
 
-# function find.directory
-#
-# end
+function find.file
+
+end
+
+function find.directory
+
+end
