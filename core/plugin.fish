@@ -4,35 +4,54 @@ function plugin.init
     set -xg sword_plugin "$sword_root/plugins"
   end
 
-  if not set -q sword_plugin_remote
-    set -xg sword_plugin_remote "$sword_root/plugins/.remote"
+  if not dir.exists $sword_plugin
+    dir.create $sword_plugin
+  # set -xg sword_plugins (ls -d $sword_plugin/*/)
+    # set -xg sword_plugins (ls $sword_plugin)
+    # echo (ls -d $sword_plugin/*)ls -d */
   end
 
   if dir.exists $sword_plugin
-  # set -xg sword_plugins (ls -d $sword_plugin/*/)
     set -xg sword_plugins (ls $sword_plugin)
-    # echo (ls -d $sword_plugin/*)ls -d */
   end
+
+  set -xg plugin_init
 
 end
 
 function plugin
+  if not set -q plugin_init
+    plugin.init
+  end
+  echo $sword_plugins
   # echo ""
 end
 
 function plugin.load
-  for plugin in $sword_plugins
-  # echo $plugin
-    if test -f "$sword_plugin/$plugin/.enabled"
-    # echo "$sword_plugin/$plugin/.enabled"
-      if test -f "$sword_plugin/$plugin/$plugin.init"
-        # echo "$sword_plugin/$plugin/$plugin.init"
-        . "$sword_plugin/$plugin/$plugin.init"
+  if arg $argv
+    for plugin in $argv
+      if file.exists "$sword_plugin/$plugin/.enabled"
+        if file.exists "$sword_plugin/$plugin/init.fish"
+          source "$sword_plugin/$plugin/init.fish"
+        end
+        if dir.exists "$sword_plugin/$plugin/src"
+          fn.path.add "$sword_plugin/$plugin/src"
+        end
       end
-      fn.path.add "$sword_plugin/$plugin"
-      # echo $plugin
+    end
+  else
+    for plugin in $sword_plugins
+      if file.exists "$sword_plugin/$plugin/.enabled"
+        if file.exists "$sword_plugin/$plugin/init.fish"
+          source "$sword_plugin/$plugin/init.fish"
+        end
+        if dir.exists "$sword_plugin/$plugin/src"
+          fn.path.add "$sword_plugin/$plugin/src"
+        end
+      end
     end
   end
+
 end
 
 function plugin.unload
