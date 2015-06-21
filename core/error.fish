@@ -14,6 +14,11 @@ end
 
 function error --on-event error
     # echo error occured
+    if arg $argv
+      out.ln (color $color_error)error(color $color_normal) $argv
+    else
+      out.ln (color $color_error)error(color $color_normal)
+    end
 end
 
 function error.not_found --on-event error_not_found

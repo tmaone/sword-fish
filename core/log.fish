@@ -1,4 +1,3 @@
-
 if not set -q log_filename
     set -xg log_filename  'sword-fish.log'
 end
@@ -25,25 +24,25 @@ function log.level
     if [ (count $argv) -gt 0 ]
         switch $argv[1]
             case debug
-                set -xU fish_log_level debug
-                set -xU fish_log_levels debug info warn error
+                set -xU log_level debug
+                set -xU log_levels debug info warn error
             case info
-                set -xU fish_log_level info
-                set -xU fish_log_levels info warn error
+                set -xU log_level info
+                set -xU log_levels info warn error
             case warn
-                set -xU fish_log_level warn
-                set -xU fish_log_levels warn error
+                set -xU log_level warn
+                set -xU log_levels warn error
             case error
-                set -xU fish_log_level error
-                set -xU fish_log_levels warn error
+                set -xU ≈ error
+                set -xU log_levels warn error
             case '*'
                 error.invalid $argv[1]
         end
     end
-    echo "$fish_log_level"
+    echo "$log_levels"
 end
 
-if not set -q fish_log_level
+if not set -q log_levels
    log.level info > /dev/null
 end
 
@@ -64,8 +63,8 @@ function log.warn
 end
 
 function log.valid
-    if test (count $argv) -eq 1
-    switch $argv[1]
+    if arg $argv
+      switch $argv[1]
         case info
             return 0
         case warn
@@ -76,25 +75,50 @@ function log.valid
             return 0
         case '*'
             return 1
-    end
+      end
     end
 end
 
+
+function log.file.on
+  set -xU log_to_file "on"
+  return 0
+end
+
+function log.file.off
+  set -xU log_to_file "off"
+  return 0
+end
+
+function log.file.clear
+  if file.exists "$sword_log_file"
+    echo "" > "$sword_log_file"
+    return 0
+  else
+    return 1
+  end
+end
+
+if not set -q log_to_file
+  log.file.off > /dev/null
+end
+
 function log.file
-    if test (count $argv) = 0
-        echo "$fish_log_to_file"
+    if not arg $argv
+      if test "$log_to_file" = on
+        return 0
+      else
+        return 1
+      end
     end
     if test (count $argv) = 1
         switch $argv[1]
         case on
-            set -xU fish_log_to_file "on"
-            return 0
+          log.file.on
         case off
-            set -xU fish_log_to_file "off"
-            return 0
+          log.file.off
         case clear
-            echo "" > "$fish_log_file"
-            return 0
+          log.file.clear
         case '*'
             invalid
             return 1
@@ -108,22 +132,31 @@ function log
             if contains $argv[1] $fish_log_levels
                 switch $argv[1]
                     case info
-                        echo (color green)"["(color white)"$argv[1]"(color green)"]"(color normal) "$argv[2..-1]"(color green)"."(color normal)
+                        info "$argv[2..-1]"
+                        if log.file
+                            echo (info "$argv[2..-1]") >> $sword_log_file
+                        end
                         return 0
                     case warn
-                        echo (color green)"["(color yellow)"$argv[1]"(color green)"]"(color normal) "$argv[2..-1]"(color green)"."(color normal)
+                        warn "$argv[2..-1]"
+                        if log.file
+                            echo (warn "$argv[2..-1]") >> $sword_log_file
+                        end
                         return 0
                     case debug
-                        echo (color green)"["(color purple)"$argv[1]"(color green)"]"(color normal) "$argv[2..-1]"(color green)"."(color normal)
+                        debug "$argv[2..-1]"
+                        if log.file
+                            echo (debug "$argv[2..-1]") >> $sword_log_file
+                        end
                         return 0
                     case error
-                        echo (color green)"["(color red)"$argv[1]"(color green)"]"(color normal) "$argv[2..-1]"(color green)"."(color normal)
+                        error "$argv[2..-1]"
+                        if log.file
+                            echo (error "$argv[2..-1]") >> $sword_log_file
+                        end
                         return 0
                     case '*'
                         return 1
-                end
-                if test $fish_log_to_file = on
-                    echo "[$argv[1]] $argv[2..-1]." >> $fish_log_file
                 end
             end
         else
