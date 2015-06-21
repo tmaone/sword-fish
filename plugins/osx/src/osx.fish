@@ -160,6 +160,13 @@ if sudo.validate
   end
 end
 
+function osx.launchd.list
+  if dir.exists $osx_launchd_path
+    set -l launchd_list (ls $osx_launchd_path)
+    out.ln $launchd_list
+  end
+end
+
 function osx.launchd
     # echo $argv
     if arg.two $argv
