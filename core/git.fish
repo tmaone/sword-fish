@@ -37,6 +37,14 @@ function git.add
   end
 end
 
+function git.push
+  if arg $argv
+    call $git push $argv
+  else
+    call $git push origin
+  end
+end
+
 function git.commit
   if arg $argv
     call $git commit -a -m "$argv"
