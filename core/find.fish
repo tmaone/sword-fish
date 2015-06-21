@@ -37,25 +37,66 @@ end
 
 function find.program
 
-    if arg.one $argv
-      set -l find_program "$argv[1]"
-      # debug "find.program: [$found] [$find_program]"
-      if not contains $find_program $found
-        set -l find_bin (eval find.path $find_program)
-        # debug "find.program: adding $argv[1] with $find_bin"
-        if test (count $find_bin) -eq 1
-          set -xg $find_program $find_bin
-          set -xg found $found $find_program
-          # debug "find.program: $find_program -> [$find_bin]"
-        else if test (count $find_bin) -gt 1
-          set -xg $find_program $find_bin[1]
-          set -xg found $found $find_program
-          # debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
+    if arg $argv
+
+      if arg.two $argv
+
+        set -l find_program "$argv[1]"
+        set -l find_program_var "$argv[2]"
+
+        if not contains $find_program $found
+          set -l find_bin (eval find.path $find_program)
+          if test (count $find_bin) -eq 1
+            set -xg $find_program_var $find_bin
+            set -xg found $found $find_program
+            # debug "find.program: $find_program -> [$find_bin]"
+          else if test (count $find_bin) -gt 1
+            set -xg $find_program_var $find_bin[1]
+            set -xg found $found $find_program
+            # debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
+          end
         end
-      else
-        # debug "find.program: $find_program contains $found"
+
+      else if arg.one $argv
+
+          set -l find_program "$argv[1]"
+
+          if not contains $find_program $found
+            set -l find_bin (eval find.path $find_program)
+            if test (count $find_bin) -eq 1
+              set -xg $find_program $find_bin
+              set -xg found $found $find_program
+              # debug "find.program: $find_program -> [$find_bin]"
+            else if test (count $find_bin) -gt 1
+              set -xg $find_program $find_bin[1]
+              set -xg found $found $find_program
+              # debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
+            end
+          end
       end
     end
+
+end
+
+
+      # set -l find_program "$argv[1]"
+      # # debug "find.program: [$found] [$find_program]"
+      # if not contains $find_program $found
+      #   set -l find_bin (eval find.path $find_program)
+      #   # debug "find.program: adding $argv[1] with $find_bin"
+      #   if test (count $find_bin) -eq 1
+      #     set -xg $find_program $find_bin
+      #     set -xg found $found $find_program
+      #     # debug "find.program: $find_program -> [$find_bin]"
+      #   else if test (count $find_bin) -gt 1
+      #     set -xg $find_program $find_bin[1]
+      #     set -xg found $found $find_program
+      #     # debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
+      #   end
+      # else
+      #   # debug "find.program: $find_program contains $found"
+      # end
+    # end
     # set -l find_bin
     #
     #
@@ -83,7 +124,7 @@ function find.program
         # debug "Program [$find_program] not found"
         # return 1
     # end
-end
+# end
 
 # function find.path
 #
