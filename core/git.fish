@@ -29,6 +29,20 @@ function git.url
 # git config --get remote.origin.url
 end
 
+function git.add
+  if arg $argv
+    call $git add $argv
+  else
+    call $git add .
+  end
+end
+
 function git.init
   find.program git
 end
+
+function git.status
+  call $git status
+end
+
+# function git.url
