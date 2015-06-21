@@ -1,0 +1,3 @@
+function trash
+
+end

@@ -30,6 +30,6 @@
 #     end
 # end
 
-# function ssh
-#
-# end
+function ssh
+
+end
