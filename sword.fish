@@ -190,6 +190,8 @@ prompt.load
 
 theme.load
 
+color.personal
+
 if file.exists "$sword_root/user.fish"
     builtin source "$sword_root/user.fish"
 end
