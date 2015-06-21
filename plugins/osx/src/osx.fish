@@ -65,82 +65,45 @@ function osx.update
   end
 end
 
+function osx.sleep
+    call $osascript -e 'tell application "System Events" to sleep'
+end
 #
-# function os.update
-#     sudo.validate
-#     sudo softwareupdate -iav
-#     sudo.invalidate
-#     brew update -vvv
-#     brew upgrade -vvv
-#     fish.update
-#     sword.update
-# end
-#
-# function os.sleep
-#     osascript -e 'tell application "System Events" to sleep'
-# end
-#
-# function os.logout
-#     osascript -e 'tell application "System Events" to log out'
-# end
-#
-# function os.restart
-#     # if sudo.validate
-#     #     sudo shutdown -r now
-#     # end
-#     osascript -e 'tell application "System Events" to restart'
-# end
-#
-# function os.shutdown
-#     # if sudo.validate
-#     #     sudo shutdown -h now
-#     # end
-#     osascript -e 'tell application "System Events" to shut down'
-# end
-#
-# function os.periodic
-#     if sudo.validate
-#         sudo /usr/sbin/periodic daily weekly monthly
-#     end
-# end
-#
-# function os.log
-#     tail -f /var/log/system.log
-# end
-#
-# function os.java_config
-#     log.debug "Java Home is:" (/usr/libexec/java_home)
-#     set -xU JAVA_HOME (/usr/libexec/java_home)
-# end
+function osx.logout
+  call $osascript -e 'tell application "System Events" to log out'
+end
+
+function os.restart
+    # if sudo.validate
+    #     sudo shutdown -r now
+    # end
+    call $osascript -e 'tell application "System Events" to restart'
+end
+
+function osx.shutdown
+    # if sudo.validate
+    #     sudo shutdown -h now
+    # end
+    call $osascript -e 'tell application "System Events" to shut down'
+end
+
+function osx.log
+    call $tail -f /var/log/system.log
+end
+
+function osx.java-config
+    # debug "Java Home is:" (/usr/libexec/java_home)
+    set -xU JAVA_HOME (/usr/libexec/java_home)
+end
 
 
-# import arg sudo
-#
-# function osx --description 'Evaluates the command if the current OS is MacOS'
-#     if set -q OS
-#         if test $OS = "darwin"
-#             if arg.has_args $argv
-#                 eval $argv
-#             end
-#             return 0
-#         else
-#             return 1
-#         end
-#     else
-#         return 1
-#     end
-# end
-#
-# function osx.reset_launchpad
-#     echo not working in yosemite
-#     # if not test -z (ls ~/library/Application\ Support/Dock/*.db 2> /dev/null)
-#     #     echo deleting
-#     #     rm -v ~/library/Application\ Support/Dock/*.db
-#     # else
-#     # echo nothing to delete
-#     # end
-#     # kill.dock
-# end
+function osx.kill.dock
+  call $killall -HUP "Dock" > /dev/null 2>&1
+end
+
+function osx.kill.finder
+  call $killall -HUP "Finder" > /dev/null 2>&1
+end
 
 # TODO perhaps integrate with lunchy (ls, etc)
 #
@@ -185,10 +148,15 @@ end
 #     end
 # end
 #
-# function osx.kill.dock
-#     killall -HUP "Dock" > /dev/null 2>&1
-# end
-#
-# function osx.kill.finder
-#     killall -HUP "Finder" > /dev/null 2>&1
+
+
+
+# function os.update
+#     sudo.validate
+#     sudo softwareupdate -iav
+#     sudo.invalidate
+#     brew update -vvv
+#     brew upgrade -vvv
+#     fish.update
+#     sword.update
 # end
