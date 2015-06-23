@@ -42,6 +42,8 @@ function core.init
 
     import osx
 
+    import host
+
     import path
 
     import net

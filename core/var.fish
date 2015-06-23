@@ -34,6 +34,12 @@ function var.remove
   end
 end
 
+
+function var.empty
+
+end
+
+
 function var.default
   set -U -- $argv
 end

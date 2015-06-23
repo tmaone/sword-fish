@@ -119,6 +119,28 @@ function sword.load.progress
     end
 end
 
+function sword.status
+  set -l sword_status (git --git-dir="$sword_root/.git" --work-tree="$sword_root" status --porcelain)
+  if test -z "$sword_status"
+    return 1
+  else
+    return 0
+  end
+end
+
+function sword.push
+
+  if sword.status
+    wd.save
+    cd $sword_root
+    git.add
+    git.commit $argv
+    git.push
+    wd.cd
+  end
+
+end
+
 function sword
 
 end
