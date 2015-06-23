@@ -196,6 +196,6 @@ end
 
 if status --is-login
 
-  sword.init
+  # sword.init
 
 end
