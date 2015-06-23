@@ -205,6 +205,6 @@ if set -q update_count
         set -xU update_count (math $update_count + 1)
     end
 else
-  sword.update
   set -xU update_count 1
+  sword.update
 end
