@@ -147,19 +147,26 @@ end
 
 var.global sword_version (sword.version)
 
-plugin.load
+if status --is-interactive
 
-prompt.load
+  plugin.load
 
-theme.load
+  prompt.load
 
-color.personal
+  theme.load
 
+  color.personal
+
+end
 
 if file.exists "$sword_root/user.fish"
     builtin source "$sword_root/user.fish"
 end
 
-if update.check
-  info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
+if status --is-interactive
+
+  if update.check
+    info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
+  end
+
 end
