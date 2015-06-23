@@ -119,6 +119,10 @@ function sword.load.progress
     end
 end
 
+function sword
+
+end
+
 function on_pwd -v PWD
 
     if not set -q sword_pwd
@@ -134,12 +138,9 @@ function on_pwd -v PWD
 end
 
 function on_exit --on-process %self
-    out 'done'
+    out.ln 'bye.'
 end
 
-function sword
-
-end
 
 function sword.init
 
