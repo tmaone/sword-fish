@@ -145,9 +145,29 @@ function sword
 
 end
 
-var.global sword_version (sword.version)
+function sword.init
+
+  var.global sword_version (sword.version)
+
+  plugin.load
+
+  prompt.load
+
+  theme.load
+
+  color.personal
+
+  if update.check
+    info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
+  end
+
+  set -xg sword_init done
+
+end
 
 if status --is-interactive
+
+  var.global sword_version (sword.version)
 
   plugin.load
 
