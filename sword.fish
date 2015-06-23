@@ -159,11 +159,9 @@ function on_pwd -v PWD
 
 end
 
-
-function on_exit --on-process %self
-    echo 'bye.'
-end
-
+# function on_exit --on-process %self
+    # echo 'bye.'
+# end
 
 function sword.init
 
