@@ -64,8 +64,8 @@ function sword.version.remote
 end
 
 function sword.version.package
-    if test -f $sword_root/version
-        set -l sword_version_package (cat $sword_root/version)
+    if test -f $sword_root/VERSION
+        set -l sword_version_package (cat $sword_root/VERSION)
         out $sword_version_package
     end
 end
@@ -123,43 +123,6 @@ function sword.load.progress
     end
 end
 
-function sword.check_update
-    # debug set -q sword_updated | progress
-    #
-    # if not set -q sword_updated
-
-        set -l version_local_git (sword.version.git)
-        set -l version_remote_git ''
-
-        if net.connected
-            set version_remote_git (git --git-dir="$sword_root/.git" --work-tree="$sword_root" ls-remote origin HEAD | grep HEAD | cut -c 1-7)
-        else
-            set version_remote_git (sword.version.git)
-        end
-
-        # debug "sword+fish ("$version_local_git")~>("$version_remote_git")"
-
-        if string.equals "$version_local_git\n$version_remote_git"
-            info "sword+fish is up-to-date... " (color aqua)"("(color beige)(sword.version)(color aqua)")"(color normal)
-            set -xg sword_updated
-            return 1
-        else
-            info "sword+fish update available... " (color tomato)"("(color darkorange)$version_local_git(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)$version_remote_git(color palegreen)")"(color normal)
-            set -xg sword_updated
-            return 0
-        end
-    # else
-        # return 1
-    # end
-end
-
-function sword.update
-    if sword.check_update
-        call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull
-        reload
-    end
-end
-
 function on_pwd -v PWD
 
     if not set -q sword_pwd
@@ -192,19 +155,11 @@ theme.load
 
 color.personal
 
+
 if file.exists "$sword_root/user.fish"
     builtin source "$sword_root/user.fish"
 end
 
-# check for update
-if set -q update_count
-    if test $update_count -ge 3
-        sword.update
-        set -xU update_count 1
-    else
-        set -xU update_count (math $update_count + 1)
-    end
-else
-  set -xU update_count 1
-  sword.update
+if update.check
+  info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
 end

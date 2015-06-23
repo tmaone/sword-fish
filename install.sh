@@ -38,7 +38,7 @@ if [ ! -d "$sword_root" ]; then
 fi
 
 if [ ! -e "$sword_root/.git/config" ]; then
-  git clone "$sword_git\n$sword_root";
+  git clone "$sword_git" "$sword_root";
 else
   cd "$sword_root";
   git pull;

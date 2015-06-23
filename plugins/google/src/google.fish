@@ -3,7 +3,7 @@ function google
   function google.osx
     # debug $argv
     info "Googling [$argv]"
-    call $open -a "Safari\n$argv"
+    call $open -a "Safari" "$argv"
   end
 
   function google.linux
