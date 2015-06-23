@@ -3,7 +3,8 @@
 sword-fish
 ==========
 
-A framework for managing things with your fish-shell.
+A toolkit for the fish shell.
+
 
 Install
 =======
