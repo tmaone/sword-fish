@@ -20,5 +20,7 @@ end
 function fish --description 'The user-friendly command line shell.'
   if arg $argv
     call $fish $argv
+  else
+    call $fish
   end
 end

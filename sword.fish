@@ -79,19 +79,19 @@ function sword.logo
     function plus
         color tomato
     end
-    function fish
+    function fishc
         color yellowgreen
     end
     function arrow
         color dimgrey
     end
     # out.ln ""
-    out.ln (sword)"                                .___"(plus)"           "(fish)"  _____.__       .__ "(arrow)""
-    out.ln (sword)"  ________  _  _____________  __| _/"(plus)"   .__     "(fish)"_/ ____\__| _____|  |__ "(arrow)" __"
-    out.ln (sword)" /  ___/\ \/ \/ /  _ \_  __ \/ __ | "(plus)" __|  |___ "(fish)"\   __\|  |/  ___/  |  \ "(arrow)"\ \ "
-    out.ln (sword)" \___ \  \     (  <_> )  | \/ /_/ | "(plus)"/__    __/ "(fish)" |  |  |  |\___ \|   Y  \ "(arrow)"\ \ "
-    out.ln (sword)"/____  >  \/\_/ \____/|__|  \____ | "(plus)"   |__|    "(fish)" |__|  |__/____  >___|  / "(arrow)"/ /"
-    out.ln (sword)"     \/                          \/ "(plus)"           "(fish)"               \/     \/ "(arrow)"/_/"
+    out.ln (sword)"                                .___"(plus)"           "(fishc)"  _____.__       .__ "(arrow)""
+    out.ln (sword)"  ________  _  _____________  __| _/"(plus)"   .__     "(fishc)"_/ ____\__| _____|  |__ "(arrow)" __"
+    out.ln (sword)" /  ___/\ \/ \/ /  _ \_  __ \/ __ | "(plus)" __|  |___ "(fishc)"\   __\|  |/  ___/  |  \ "(arrow)"\ \ "
+    out.ln (sword)" \___ \  \     (  <_> )  | \/ /_/ | "(plus)"/__    __/ "(fishc)" |  |  |  |\___ \|   Y  \ "(arrow)"\ \ "
+    out.ln (sword)"/____  >  \/\_/ \____/|__|  \____ | "(plus)"   |__|    "(fishc)" |__|  |__/____  >___|  / "(arrow)"/ /"
+    out.ln (sword)"     \/                          \/ "(plus)"           "(fishc)"               \/     \/ "(arrow)"/_/"
 end
 
 function fish_greeting
