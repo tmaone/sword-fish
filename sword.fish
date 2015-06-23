@@ -193,3 +193,9 @@ if status --is-interactive
   sword.init
 
 end
+
+if status --is-login
+
+  sword.init
+
+end

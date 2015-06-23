@@ -38,6 +38,8 @@ function core.init
 
     import fn
 
+    import ask
+    
     import linux
 
     import osx

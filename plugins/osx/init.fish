@@ -15,7 +15,10 @@ function osx.init
   find.program dscacheutil
   find.program launchctl
   find.program scutil
-
+  find.program dscl
+  find.program grep
+  find.program dseditgroup
+  
   var.global PlistBuddy "/usr/libexec/PlistBuddy"
 
   if not set -q osx

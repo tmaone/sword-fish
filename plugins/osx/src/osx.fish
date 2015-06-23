@@ -470,3 +470,64 @@ end
 function osx.computer-name
   call $scutil --get ComputerName
 end
+
+function osx.user.list
+  set -l searchusers "/Search/Users"
+  set -l localnode "localhost"
+  call $dscl $localnode -list $searchusers
+end
+
+function osx.user
+
+  set -l searchusers "/Search/Users"
+  set -l localnode "localhost"
+
+  if arg $argv
+
+    set -l user_result (call $grep -i $argv[1] (call $dscl $localnode -list $searchusers | psub))
+    if not test -z "$user_result"
+      out "$user_result"
+      return 0
+    else
+      return 1
+    end
+  else
+    out (user)
+  end
+end
+
+function osx.group
+
+	if test (count $argv) = 1
+		set -l node (get.ldapnode)
+		set -l result (call $dseditgroup -o read -n $node -t group $argv[1] ^&1)
+		echo $result
+		if test "$result" = "Group not found."
+			echo not found
+			return 1
+		else
+			echo found
+			return 0
+		end
+	end
+	# call $tail -1 (call $sort -ug (call $awk '{print $2}' (call $dscl $node -list $users UniqueID | psub) | psub) | psub )
+  # dseditgroup -o read -n /LDAPv3/127.0.0.1 -t group workgro
+  # call $grep "Group not found"
+end
+
+
+
+
+# function check.user
+# 	set -l searchusers "/Search/Users"
+# 	set -l localnode "localhost"
+# 	if test (count $argv) = 1
+# 		set -l userresult (call $grep $argv[1] (call $dscl $localnode -list $searchusers | psub) )
+# 		# echo $userresult
+# 		if test "$userresult" = "$argv[1]"
+# 			return 0
+# 		else
+# 			return 1
+# 		end
+# 	end
+# end
