@@ -30,6 +30,8 @@ function core.init
 
     import disk
 
+    import cpu
+
     import download
 
     import file
@@ -39,7 +41,7 @@ function core.init
     import fn
 
     import ask
-    
+
     import linux
 
     import osx
