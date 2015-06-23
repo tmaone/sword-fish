@@ -46,6 +46,10 @@ function file.name
   end
 end
 
+function file.base
+  echo $argv | awk -F '.' '{print $1}'
+end
+
 function file.extension
 
   if test (count $argv) = 0

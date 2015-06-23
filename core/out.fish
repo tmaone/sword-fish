@@ -1,6 +1,6 @@
 function out
   if arg $argv
-    echo -n $argv
+    echo -n -e $argv
   end
 end
 

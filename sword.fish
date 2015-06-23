@@ -170,7 +170,7 @@ function sword.init
 
   plugin.load
 
-  prompt.load
+  # prompt.load
 
   theme.load
 

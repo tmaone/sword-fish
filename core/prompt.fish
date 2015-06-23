@@ -12,13 +12,15 @@ function prompt.init
     set -xg sword_prompts (ls $sword_prompt)
   end
 
-  prompt.load
-
-  if not prompt.set
-    prompt.set $sword_prompts[1]
+  for prompt in $sword_prompts
+    prompt.load $prompt
   end
 
-  set -xg prompt_init
+  if not prompt.set
+    prompt.set "sword-fish/sword-fish"
+  end
+
+  set -xg prompt_init done
 
 end
 
@@ -29,43 +31,44 @@ function prompt
   end
 
   if arg $argv
-    if contains "$argv" $sword_prompts
+    if prompt.set "$argv"
       return 0
     else
       return 1
     end
   else
-    out $sword_prompts
+    out.ln (prompt.list)
     return 0
   end
 
 end
 
 function prompt.load
-  for prompt in $sword_prompts
-    if file.exists "$sword_prompt/$prompt/$prompt.prompt"
-      builtin source "$sword_prompt/$prompt/$prompt.prompt"
-      # debug "$sword_prompt/$prompt/$prompt.prompt"
+  if arg.one $argv
+    for file in (ls $sword_prompt/$argv/*.prompt)
+      builtin source "$file"
+      # out.ln $file
     end
+    # end
   end
 end
 
 function prompt.list
-  out $sword_prompts
-end
-
-function prompt.enable
-  if arg.one $argv
-    if contains "$argv" $sword_prompts
-      prompt.set "$argv"
+  for prompt in $sword_prompts
+    out $prompt"/ "
+    for file in (ls $sword_prompt/$prompt/*.prompt)
+    set -l filename (file.name $file)
+    set -l basename (file.base $filename)
+    out "[$basename] "
     end
+    out "\n"
   end
 end
 
 function prompt.set
   if arg.one $argv
-    if contains $argv[1] $sword_prompts
-      var.global prompt "$argv[1].prompt"
+    if file.exists "$sword_prompt/$argv.prompt"
+      var.global prompt (file.name $argv)".prompt"
       function fish_prompt
         eval $prompt
       end
@@ -76,5 +79,12 @@ function prompt.set
     else
       return 1
     end
+  end
+end
+
+
+function prompt.get
+  if prompt.set
+    out $prompt
   end
 end
