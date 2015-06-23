@@ -14,6 +14,11 @@ function profile --description 'Profiles the Operating System'
     set -xg ARCH (call $uname -m)
     set -xg PLATFORM {$OS}-{$ARCH}-{$KERNEL}
 
+    if test "$OS" = linux
+      if not test -z (call $uname -a | grep -i 'synology')
+        set -xg OS syno
+      end
+    end
 
     # set -xg OS_NAME (sw_vers  -productName)
     # set -xg OS_VERSION (sw_vers  -productVersion)
