@@ -191,6 +191,8 @@ end
 
 if status --is-interactive
   sword.init
-else status --is-login
+end
+
+if status --is-login
   # sword.init
 end
