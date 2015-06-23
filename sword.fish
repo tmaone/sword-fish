@@ -189,14 +189,8 @@ function sword.init
 
 end
 
-# if status --is-interactive
-
-sword.init
-
-# end
-
-# if status --is-login
-
+if status --is-interactive
+  sword.init
+else status --is-login
   # sword.init
-
-# end
+end
