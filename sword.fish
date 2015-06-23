@@ -4,10 +4,6 @@ if set -q fish_greeting
     set -e fish_greeting
 end
 
-if functions -q fish_greeting
-    functions -e fish_greeting
-end
-
 if not set -q sword_root
     if test -d (pwd)/core
       set -gx sword_root (pwd)
@@ -172,5 +168,5 @@ end
 if status --is-interactive
 
   sword.init
-  
+
 end
