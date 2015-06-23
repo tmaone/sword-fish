@@ -31,5 +31,7 @@
 # end
 
 function ssh
-
+  if arg $argv
+    call $ssh $argv
+  end
 end
