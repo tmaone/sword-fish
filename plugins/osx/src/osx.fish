@@ -207,3 +207,37 @@ function osx.ldapnode
   end
 
 end
+
+function osx.diradmin
+ set -l mode (osx.ldapmode)
+ if test $mode = "ldap"
+    echo "diradmin"
+  else
+    echo $USER
+  end
+end
+
+
+function osx.diradmin.password
+  set -l searchnode "/Search"
+  set -l diradmin (get.diradmin)
+  if [ "$diradminpasswd" = "" ]
+  log.info "Please enter password for $diradmin (enter break to stop)"
+  set good "no"
+  while [ $good = "no" ]
+    read -l -p prompt.passwd diradminpasswd
+    if test $diradminpasswd = "break"
+      set good "exit"
+      break
+    end
+    set passwdok (call $grep failed (call $dscl $searchnode -authonly $diradmin $diradminpasswd | psub ) )
+    if [ "$passwdok" = "" ]
+      set good "yes"
+      # echo $diradminpasswd
+      set -g diradminpasswd $diradminpasswd
+    else
+      log.error "Password failed, try again"
+    end
+  end
+  end
+end

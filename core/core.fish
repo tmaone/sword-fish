@@ -16,25 +16,27 @@ function core.init
 
     import string
 
-    import color
-
     import find
 
+    import wd
+
+    import dir
+
+    import file
+
     import in out
+
+    import color
 
     import log
 
     import profile
-
-    import dir
 
     import disk
 
     import cpu
 
     import download
-
-    import file
 
     import fish
 
@@ -51,14 +53,12 @@ function core.init
     import path
 
     import hash
-    
+
     import net
 
     import ps
 
     import plugin
-
-    import prompt
 
     import theme
 
@@ -80,9 +80,9 @@ function core.init
 
     import git
 
-    import wd
-
     import update
+
+    import prompt
 
     set -xg sword_core_init "done"
     # debug "core.init done"

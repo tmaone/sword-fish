@@ -59,6 +59,11 @@ function file.extension
   if test (count $argv) = 1
     if test -f $argv
       ls $argv | awk -F '.' '{print $NF}'
+    else
+      set files (find (wd) -maxdepth 1 -type f -name "*.$argument" -print)
+      for file in $files
+        file.name $file
+      end
     end
   end
 

@@ -4,7 +4,8 @@ end
 
 function net.init
   find.program ping
-  end
+  find.program ifconfig
+end
 
 function net.connected
     call $ping -W 1 -c 1 www.google.com > /dev/null ^ /dev/null
@@ -19,4 +20,9 @@ function net.connected
     # else
     #     return 1
     # end
+end
+
+
+function net.mac-address
+  call $ifconfig -a | awk '/ether/ {print $2}' ;
 end

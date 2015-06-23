@@ -32,5 +32,18 @@ function ask.yn
 end
 
 function ask.empty
-	echo -n (green) " > " (normal) 
+	echo -n (green) " > " (normal)
+end
+
+
+function ask.message
+	color.red; echo -n $argv ; color.normal ; echo -n " > "
+end
+
+function ask.passwd
+	color.red; echo -n password ; color.normal ; echo -n " > "
+end
+
+function ask.ynask
+	echo -n (color.green) "[yY/nN]>" (color.normal)
 end

@@ -20,7 +20,6 @@ function count.words
 	end
 end
 
-
 function count.files
   if arg $argv
     # switch $argv

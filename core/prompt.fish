@@ -45,11 +45,22 @@ end
 
 function prompt.load
   if arg.one $argv
-    for file in (ls $sword_prompt/$argv/*.prompt)
-      builtin source "$file"
-      # out.ln $file
-    end
+    wd.save
+    # cd $sword_prompt/$argv
+    # # wd
+    # # file.extension prompt
+    # set -l prompt_files (file.extension 'prompt')
+    # # set -l sword_prompts (file.extension prompt)
+    #
+    # # echo $sword_prompts
+    # for file in $prompt_files
+    # #   echo $file
+    # #   if file.exists "$file"
+    # echo "builtin source" "$argv"
+    # #     builtin source "$file"
+    # #   end
     # end
+    wd.cd
   end
 end
 
@@ -67,10 +78,13 @@ end
 
 function prompt.set
   if arg.one $argv
+    # echo $argv
+    # echo "$sword_prompt/$argv.prompt"
     if file.exists "$sword_prompt/$argv.prompt"
+      builtin source "$sword_prompt/$argv.prompt"
       var.global prompt (file.name $argv)".prompt"
       function fish_prompt
-        eval $prompt
+          eval $prompt
       end
     end
   else

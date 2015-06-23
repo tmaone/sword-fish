@@ -1,8 +1,22 @@
-if not set -q host
-    find.program host
-    find.program hostname
-    find.program sudo
+function host.init
+  find.program host
+  find.program hostname
+  find.program sudo
+  host.profile
 end
+
+function host.profile
+  var.global HOST (file.base (host.name))
+  var.global HOST_NAME (host.name)
+  var.global HOST_EXT (host.extension (host.name))
+end
+
+function host.profile.print
+  out.ln HOST_NAME (host.name)
+  out.ln HOST (file.base (host.name))
+  out.ln HOST_EXT (host.extension (host.name))
+end
+
 
 function host
     if arg $argv

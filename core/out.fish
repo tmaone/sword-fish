@@ -9,3 +9,8 @@ function out.ln
     echo $argv
   end
 end
+
+
+function out.mute
+  # nohup $argv[1] &>/dev/null &
+end
