@@ -159,6 +159,7 @@ function on_pwd -v PWD
 
 end
 
+
 function on_exit --on-process %self
     echo 'bye.'
 end
@@ -188,14 +189,14 @@ function sword.init
 
 end
 
-if status --is-interactive
+# if status --is-interactive
 
-  sword.init
+sword.init
 
-end
+# end
 
-if status --is-login
+# if status --is-login
 
   # sword.init
 
-end
+# end
