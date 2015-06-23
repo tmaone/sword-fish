@@ -160,7 +160,7 @@ function on_pwd -v PWD
 end
 
 function on_exit --on-process %self
-    out.ln 'bye.'
+    echo 'bye.'
 end
 
 
