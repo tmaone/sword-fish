@@ -14,7 +14,7 @@ function color.init
 		set -xg color_count (count $color_names)
 			# echo seq $color_count
 			for i in (seq $color_count)
-				# echo "name:$color_names[$i]" "rgb:$color_rgb[$i]"
+				# echo "name:$color_names[$i]\nrgb:$color_rgb[$i]"
 				if not set -q color_$color_names[$i]
 					set -U color_$color_names[$i] $color_rgb[$i]
 				end
@@ -57,7 +57,7 @@ function color.demo
 
 	# for i in (seq $color_count)
 	# 	printf "%s\n" (eval "color.$color_names[$i]")"color_$color_names[$i]"
-	# 	# echo "name:$color_names[$i]" "rgb:$color_rgb[$i]"
+	# 	# echo "name:$color_names[$i]\nrgb:$color_rgb[$i]"
 	# end
 	# " gray "(color.brown)" brown "(color.blue)" blue "(color.cyan)" cyan "(color.green)" green "(color.magenta)" magenta "(color.normal)" normal "(color.purple)" purple "(color.white)" white "(color.yellow)" yellow "
 end

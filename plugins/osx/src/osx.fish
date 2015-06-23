@@ -1,6 +1,6 @@
 function osx.power
-  set -l max (ioreg -l | fgrep MaxCapacity | cut -d= -f2 | tr -d " ");
-  set -l cur (ioreg -l | fgrep CurrentCapacity | cut -d= -f2 | tr -d " ");
+  set -l max (ioreg -l | fgrep MaxCapacity | cut -d= -f2 | tr -d \n);
+  set -l cur (ioreg -l | fgrep CurrentCapacity | cut -d= -f2 | tr -d \n);
   set -l battery (awk -v "a=$max" -v "b=$cur" 'BEGIN{printf("%.2f%%", b/a * 100)}');
   out (color lightskyblue)"$battery"(color normal)
 end

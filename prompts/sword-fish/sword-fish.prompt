@@ -1,7 +1,7 @@
 function sword-fish.prompt --description 'sword-fish prompt'
                  set -l last_status $status
-                 set fish_color_user "-o" "green"
-                 set fish_color_host "-o" "cyan"
+                 set fish_color_user "-o\ngreen"
+                 set fish_color_host "-o\ncyan"
 
                  # User
                  set_color $fish_color_user

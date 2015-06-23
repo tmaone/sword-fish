@@ -15,7 +15,7 @@ function setting.get
   # log.debug "Settings file is: $settingfile"
   # log.debug "Settings name is: $settingname"
 
-  # call $sed -n "s/^$argv[2]=\(.*$\)/\1/p" "$argv[1]"
+  # call $sed -n "s/^$argv[2]=\(.*$\)/\1/p\n$argv[1]"
   # sed -n -e 's/^.*stalled: //p'
   set -l result (call $sed -n -e 's/^'$settingname'=//p' "$settingfile")
   # echo $result
@@ -35,7 +35,7 @@ function setting.set
   set -l settingname "$argv[2]"
   set -l setting "$argv[3]"
 
-  set -l result (setting.get "$settingfile" "$settingname")
+  set -l result (setting.get "$settingfile\n$settingname")
   # log.debug "$result"
 
   if test -z $result
@@ -51,20 +51,20 @@ function setting.set
       log.debug "Setting $settingname in $settingfile is already $setting."
     else
     log.debug "Setting $settingname exists in $settingfile, inline replace."
-     # echo sed "s@$searchstring.*@$replacestring@g" "$settingfile"
-     call $sed -i '' "s@$searchstring.*@$replacestring@g" "$settingfile"
+     # echo sed "s@$searchstring.*@$replacestring@g\n$settingfile"
+     call $sed -i '' "s@$searchstring.*@$replacestring@g\n$settingfile"
     end
 
     # cat "$settingfile"
 
     # set -l origstr "set -g $settingname"
     # set -l finalstr "set -g $settingname $setting"
-    # echo call $awk -F= "{$settingname=$setting;print}" OFS="\=" "$settingfile"
+    # echo call $awk -F= "{$settingname=$setting;print}" OFS="\=\n$settingfile"
   # sed "s/mysqlpasswd/$_gitlab_mysql_passwd/g" $_server/services/gitlab/database.yml.mysql > $_gitlab_path/config/database.yml
 
     # call echo $sed -i 's/^'$settingname'=.*/'$settingname'='$setting'/g' "$settingfile"
-    # echo call $sed -i \""s@$settingname\=.*@/$settingname=$setting@g\"" "$settingfile"
-    # call $sed -i \""s@$settingname\=.*@/$settingname=$setting@g\"" "$settingfile"
+    # echo call $sed -i \""s@$settingname\=.*@/$settingname=$setting@g\"\n$settingfile"
+    # call $sed -i \""s@$settingname\=.*@/$settingname=$setting@g\"\n$settingfile"
     # awk -F= '{$2="xxx";print}' OFS="\=" filename
     # call echo $sed -i \'s/^set -g \'$settingname\'*/set -g \'$settingname\' \'$setting\'/g\' "$settingfile"
   end

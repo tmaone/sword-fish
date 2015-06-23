@@ -3,7 +3,7 @@ function google
   function google.osx
     # debug $argv
     info "Googling [$argv]"
-    call $open -a "Safari" "$argv"
+    call $open -a "Safari\n$argv"
   end
 
   function google.linux
@@ -17,8 +17,8 @@ function google
     set -l url https://google.com/search\?q=$tmp
     # debug argument is : $tmp
     # debug url is : $url
-    # osx $open "/Applications/Safari.app" "$url"
-    # debug "[$tmp]" "[$url]"
+    # osx $open "/Applications/Safari.app\n$url"
+    # debug "[$tmp]\n[$url]"
 
     if osx
      google.osx $url

@@ -38,10 +38,36 @@ function file.sanitize
   sudo chown -R $USER:staff $argv
 end
 
+function file.name
+  if arg $argv
+    out.ln (basename $argv)
+  else
+
+  end
+end
+
 function file.extension
-    if test (count $argv) = 1
-        if test -f $argv
-            ls $argv | awk -F '.' '{print $NF}'
-        end
+
+  if test (count $argv) = 0
+
+  end
+
+  if test (count $argv) = 1
+    if test -f $argv
+      ls $argv | awk -F '.' '{print $NF}'
     end
+  end
+
+  if arg.two $argv
+    for argument in $argv
+      # echo $argument
+      # ls $argument | awk -F '.' '{print $NF}'
+      set files (find (wd) -maxdepth 1 -type f -name "*.$argument" -print)
+      for file in $files
+        # echo $file
+        file.name $file
+      end
+    end
+  end
+
 end

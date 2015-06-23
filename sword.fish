@@ -139,7 +139,7 @@ function sword.check_update
 
         # debug "sword+fish ("$version_local_git")~>("$version_remote_git")"
 
-        if string.equals "$version_local_git" "$version_remote_git"
+        if string.equals "$version_local_git\n$version_remote_git"
             info "sword+fish is up-to-date... " (color aqua)"("(color beige)(sword.version)(color aqua)")"(color normal)
             set -xg sword_updated
             return 1

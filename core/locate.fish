@@ -1,4 +1,4 @@
-set -xg locate_valid_search_terms "application" "applications" "app" "audio" "music" "bookmark" "bookmarks" "contact" "contacts" "email" "emails" "mail" "message" "mail" "messages" "folder" "folders" "font" "fonts" "event" "events" "todo" "todos" "image" "images" "movie" "movies" "pdf" "pdfs" "preferences" "presentation" "presentations"
+set -xg locate_valid_search_terms "application\napplications\napp\naudio\nmusic\nbookmark\nbookmarks\ncontact\ncontacts\nemail\nemails\nmail\nmessage\nmail\nmessages\nfolder\nfolders\nfont\nfonts\nevent\nevents\ntodo\ntodos\nimage\nimages\nmovie\nmovies\npdf\npdfs\npreferences\npresentation\npresentations"
 
 function locate.is_valid
     if test (count $argv) -eq 1
@@ -22,8 +22,8 @@ function locate --description 'locates a file on disk'
         case 2
             if locate.is_valid "$argv[1]"
                 log.info "Searching for $argv[1] "(color.blue)"["(color.normal)"$argv[2]"(color.blue)"]"(color.normal)
-                mdfind "kind:$argv[1]" "$argv[2]"
-                set -l resultscnt (mdfind "kind:$argv[1]" "$argv[2]" -count)
+                mdfind "kind:$argv[1]\n$argv[2]"
+                set -l resultscnt (mdfind "kind:$argv[1]\n$argv[2]" -count)
                 log.info "Found $resultscnt results"
                 return 1
             else
