@@ -6,6 +6,8 @@ function error
     # echo (out.ln (color $color_error)error(color $color_normal) $argv) >&2
     # out.ln (color $color_error)error(color $color_normal) >&2
   # end
+  # echo (red) "⁐" (normal) "$argv"(red) .(normal)
+
 end
 
 # if functions -q __fish_command_not_found_handler

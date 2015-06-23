@@ -18,15 +18,17 @@ function osx.init
   find.program dscl
   find.program grep
   find.program dseditgroup
-  
+  find.program sort
+  find.program awk
+
   var.global PlistBuddy "/usr/libexec/PlistBuddy"
 
   if not set -q osx
-    var.global osx "$sword_plugin/osx/src/osx.fish"
+    var.global osx (ls $sword_plugin/osx/src/*.fish)
   end
 
-  if file.exists $osx
-    builtin source $osx
+  for file in $osx
+     builtin source $file
   end
 
 end

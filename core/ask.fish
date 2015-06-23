@@ -30,3 +30,7 @@ function ask.yn
 		err.novalid
 	end
 end
+
+function ask.empty
+	echo -n (green) " > " (normal) 
+end

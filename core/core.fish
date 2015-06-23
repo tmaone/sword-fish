@@ -50,6 +50,8 @@ function core.init
 
     import path
 
+    import hash
+    
     import net
 
     import ps

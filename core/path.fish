@@ -1,5 +1,5 @@
 function path
-
+  echo $PATH
 end
 
 function path.add --description 'Adds a directory in the PATH variable'
