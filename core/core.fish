@@ -52,6 +52,8 @@ function core.init
 
     import net
 
+    import ps
+
     import plugin
 
     import prompt
