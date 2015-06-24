@@ -81,6 +81,9 @@ function file.extension
 
 end
 
+function file.list
+  
+end
 
 function file.info
 echo (red) implement it!

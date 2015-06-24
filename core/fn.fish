@@ -39,3 +39,11 @@ function fn.create
 	echo 'function' $func_name \n 'end'  > $func_name.fish
 	edit $func_name.fish
 end
+
+function fn.exists
+  if functions -q $argv
+    return 0
+  else
+    return 1
+  end
+end
