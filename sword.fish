@@ -95,7 +95,7 @@ function sword.logo
 end
 
 function fish_greeting
-    # sword.logo
+    sword.logo
 end
 
 function sword.root
