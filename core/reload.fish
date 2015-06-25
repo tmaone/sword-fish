@@ -1,7 +1,7 @@
 function reload --description 'Reloads the sword-fish configuration'
-  if test -f $sword_root/sword.fish
-    set -e sword_core_init
-    import.clear
-    import core
+  if file.exists "$sword_root/sword.fish"
+    var.remove sword_core_init
+    var.remove sword_imports
+    source $sword_root/sword.fish
   end
 end

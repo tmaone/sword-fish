@@ -24,11 +24,11 @@ end
 
 function update
 
-  if test (math (random)%100) -ge (math 100 - $update_chance)
-    if update.check
-      var.global update_available true
-    end
+  # if test (math (random)%100) -ge (math 100 - $update_chance)
+  if update.check
+    var.global update_available true
   end
+  # end
 
   if test $update_available = true
     call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull

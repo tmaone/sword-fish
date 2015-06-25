@@ -14,3 +14,6 @@ end
 function out.mute
   # nohup $argv[1] &>/dev/null &
 end
+
+
+# printf "\033[6;3HHello\n"

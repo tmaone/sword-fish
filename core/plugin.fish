@@ -15,8 +15,6 @@ function plugin.init
     set -xg sword_plugins (ls $sword_plugin)
   end
 
-  plugin.load
-
   set -xg plugin_init
 
 end

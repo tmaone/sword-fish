@@ -37,6 +37,27 @@ end
 
 function color.demo
 
+	for fgbg in 38 48
+		for color in (seq 0 256)
+		  echo -en "\e["$fgbg";5;"$color"m "$color"\t\e[0m"
+		  if test (count $color+1 % 10) -eq 0
+			  	echo -e "\n"
+		  end
+	  end
+		echo -e "\n"
+   end
+
+	for attr in (seq 0 1)
+  	for fg in (seq 30 37)
+    	for bg in (seq 40 47)
+      	printf "\033["$attr";"$bg";"$fg"m"$attr";"$fg";"$bg"\033[m "
+    	end
+      echo
+		end
+  end
+
+	echo -e "\n"
+
 	for name in $color_names
 		out (color $name)"$name "
 	end

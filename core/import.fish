@@ -1,5 +1,5 @@
 if not set -q sword_imports
-  set -xg sword_imports "import"
+  set -xg sword_imports ""
 end
 
 function import --description 'Imports a core functionality'
@@ -8,12 +8,13 @@ function import --description 'Imports a core functionality'
       if not contains $sword_imports $argv
       # out not contains
         if test -f "$sword_core/$argv.fish"
-        # out "sourcing $argv -- "
           set -xg sword_imports $sword_imports $argv
           builtin source "$sword_core/$argv.fish"
-          if functions -q $argv.init
+          # out "sourcing $argv"
+          if functions -q "$argv.init"
+          #  out "evaling" "$argv.init"
             eval $argv.init
-            out (progress) "\n"
+            # out (progress) "\n"
           end
           return 0;
         else
