@@ -3,8 +3,10 @@ function brew
 end
 
 function brew.update
-  brew  update
-  brew.outdated
+  brew update
+end
+
+function brew.upgrade
   brew upgrade --all
 end
 
@@ -21,7 +23,7 @@ function brew.list
 end
 
 function brew.clean
-  brew cleanup;
+  brew cleanup -s;
 end
 
 function brew.pin
@@ -30,4 +32,16 @@ end
 
 function brew.unpin
   brew pin $argv;
+end
+
+function brew.uses
+    brew uses --installed $argv
+end
+
+function brew.deps
+  brew deps --installed $argv
+end
+
+function brew.deps.tree
+  brew deps --installed --tree  $argv
 end
