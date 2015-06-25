@@ -34,4 +34,3 @@ function debug
     # log.debug $argv
   end
 end
-out
