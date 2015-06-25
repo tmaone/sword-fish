@@ -23,7 +23,6 @@ if not contains $sword_core $fish_function_path
     set fish_function_path $fish_function_path $sword_core
 end
 
-
 import core
 
 function sword.version

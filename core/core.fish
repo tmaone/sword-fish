@@ -26,9 +26,19 @@ function core.init
 
     import in out
 
+    import progress
+    
     import color
 
     import log
+
+    import info
+
+    import warn
+
+    import debug
+
+    import error
 
     import profile
 
@@ -70,8 +80,6 @@ function core.init
 
     import uuid
 
-    import info warn debug error
-
     import time
 
     import date
@@ -85,8 +93,7 @@ function core.init
     import prompt
 
     set -xg sword_core_init "done"
-    # debug "core.init done"
-
+    debug "core.init done"
   end
 
 end
