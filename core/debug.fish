@@ -5,7 +5,7 @@ function debug
         case eval
           eval $argv
         case '*'
-          out.ln (color $color_debug)"debug "(color $color_normal) "$argv"
+          printf "%s%s%s%s\n" (color $color_debug) "debug " (color $color_normal) "$argv"
       end
     end
   end

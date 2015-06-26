@@ -1,14 +1,15 @@
 function error
-  if arg $argv
-    out.ln (color $color_error)"error "(color $color_normal) "$argv"
+  if error.enabled
+    if arg $argv
+      printf "%s%s%s%s\n" (color $color_error) "error " (color $color_normal) "$argv"
     # echo (out.ln (color $color_error)error(color $color_normal) $argv) >&2
     # out.ln (color color_error)error(color color_normal) $argv
   # else
     # echo (out.ln (color $color_error)error(color $color_normal) $argv) >&2
     # out.ln (color $color_error)error(color $color_normal) >&2
-  end
+    end
   # echo (red) "⁐" (normal) "$argv"(red) .(normal)
-
+  end
 end
 
 # if functions -q __fish_command_not_found_handler

@@ -1,5 +1,7 @@
 function warn
-  if arg $argv
-    out.ln (color $color_warn)" warn "(color $color_normal) $argv
+  if warn.enabled
+    if arg $argv
+      printf "%s%s%s%s\n" (color $color_warn) " warn " (color $color_normal) "$argv"
+    end
   end
 end

@@ -6,7 +6,7 @@
 
 function out.ln
   for argu in $argv
-    printf "%s" $argu
+    printf "      %s" $argu
   # if arg $argv
   #   printf "" $argv
   end
