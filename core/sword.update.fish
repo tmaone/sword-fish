@@ -1,22 +1,16 @@
-function update.init
-  if not set -q update_available
-    var.global update_available false
-  end
-  if not set -q update_chance
-    var.global update_chance 50
-  end
-end
+function sword.update
 
-function update
-
-  # if test (math (random)%100) -ge (math 100 - $update_chance)
   if update.check
     var.global update_available true
+  else
+    return 0
   end
   # end
+  # if test (math (random)%100) -ge (math 100 - $update_chance)
 
   if test $update_available = true
-    call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull
+    set -l info_msg (call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull)
+    info $info_msg
     reload
     var.global update_available false
   end
