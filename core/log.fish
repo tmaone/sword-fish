@@ -1,7 +1,3 @@
-if not set -q log_levels
-   log.level info > /dev/null
-end
-
 function log.info
     log info "$argv"
 end

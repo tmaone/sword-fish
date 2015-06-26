@@ -20,6 +20,8 @@ function log.init
 
   if not set -q log_level
     set -xU log_level info
+  else
+    log.level (log.level)
   end
 
 end
