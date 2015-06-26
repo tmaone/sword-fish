@@ -1,6 +1,23 @@
 function time
-
+    call $date "+%H:%M:%S"
 end
+
+function time.hour
+  call $date +"%H"
+end
+
+function time.minute
+  call $date +"%M"
+end
+
+function time.seconds
+  call $date +"%S"
+end
+
+function time.stamp
+  call $date "+%Y%m%d%H%M%S"
+end
+
 
 function time.countdown
 
