@@ -1,0 +1,4 @@
+# name: Just a Dollar
+function justdollar.prompt
+	echo -n '$ '
+end
