@@ -1,7 +1,7 @@
-function wd.get
-  if set -q sword_wd
-    echo "$sword_wd"
+function pwd.get
+  if set -q pwd
+    echo "$pwd"
   else
-    echo ""
+    pwd
   end
 end

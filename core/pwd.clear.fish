@@ -1,3 +1,3 @@
-function wd.clear
-  set -e sword_wd
+function pwd.clear
+  set -e pwd
 end

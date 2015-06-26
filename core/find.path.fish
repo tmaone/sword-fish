@@ -1,3 +1,7 @@
+if not var.done find_init
+  find.init
+end
+
 function find.path
     # echo $argv
     if arg.one $argv

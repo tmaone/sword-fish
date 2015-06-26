@@ -3,7 +3,3 @@ function git
     call $git $argv
   end
 end
-
-function git.init
-  find.program git
-end

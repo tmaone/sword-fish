@@ -1,3 +1,3 @@
-function wd.cd
-  cd (wd.get)
+function pwd.cd
+  cd (pwd.get)
 end

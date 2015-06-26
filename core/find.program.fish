@@ -1,3 +1,7 @@
+if not var.done find_init
+  find.init
+end
+
 function find.program
 
     if arg $argv
@@ -7,15 +11,15 @@ function find.program
         set -l find_program "$argv[1]"
         set -l find_program_var "$argv[2]"
 
-        if not contains $find_program $found
+        if not contains $find_program $found_programs
           set -l find_bin (eval find.path $find_program)
           if test (count $find_bin) -eq 1
             set -xg $find_program_var $find_bin
-            set -xg found $found $find_program
+            set -xg found_programs $found_programs $find_program
             # debug "find.program: $find_program -> [$find_bin]"
           else if test (count $find_bin) -gt 1
             set -xg $find_program_var $find_bin[1]
-            set -xg found $found $find_program
+            set -xg found_programs $found_programs $find_program
             # debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
           end
         end
@@ -24,15 +28,15 @@ function find.program
 
           set -l find_program "$argv[1]"
 
-          if not contains $find_program $found
+          if not contains $find_program $found_programs
             set -l find_bin (eval find.path $find_program)
             if test (count $find_bin) -eq 1
               set -xg $find_program $find_bin
-              set -xg found $found $find_program
+              set -xg found_programs $found_programs $find_program
               # debug "find.program: $find_program -> [$find_bin]"
             else if test (count $find_bin) -gt 1
               set -xg $find_program $find_bin[1]
-              set -xg found $found $find_program
+              set -xg found_programs $found_programs $find_program
               # debug "find.program: $find_program -> [$find_bin[1]] $find_bin[2..-1]"
             end
           end

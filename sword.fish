@@ -20,7 +20,7 @@ if not contains $sword_core $fish_function_path
     set fish_function_path $sword_core $fish_function_path
 end
 
-import core
+core.init
 
 function sword
 

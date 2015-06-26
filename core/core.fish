@@ -2,21 +2,31 @@
 #   set -xg sword_core_modules arg array call var string find wd dir file in out color log info warn debug error profile fn ask linux osx path net git fish disk cpu download host hash ps setting src sudo uuid time date reload update prompt term plugin theme
 # end
 
-function core.init
+# function core.init
+#
+#     functions -e core.init
+#
+#     set -l init_functions (fn.list | grep ".init")
+#     echo $init_functions
+#
+#     for init_function in $init_functions
+#       # echo Initializing $init_function
+#       eval "$init_function"
+#     end
+#
 
-  if not set -q sword_core_init
 
-    var.global sword_version (sword.version)
+    # emit sword_initialize
 
-    emit sword_core_init
+    # var.global sword_version (sword.version)
 
-    for core_module in $sword_core_modules
-      if set -q sword_load_progress
-        # import "$core_module" | progress
-      else
-        # import "$core_module"
-      end
-    end
+    # for core_module in $sword_core_modules
+    #   if set -q sword_load_progress
+    #     # import "$core_module" | progress
+    #   else
+    #     # import "$core_module"
+    #   end
+    # end
 
     # if set -q sword_load_progress
     #   echo
@@ -42,70 +52,11 @@ function core.init
 
     # set sword_core_init "done"
 
-  end
+  # end
+#
+# end
 
-end
 
-
-#
-# function sword.version.git
-#         if git.isgit $sword_root
-#             wd.save
-#             cd $sword_root
-#             set -l sword_version_git (git rev-parse --short HEAD)
-#             out $sword_version_git
-#             wd.cd
-#         end
-# end
-#
-# function sword.version.remote
-#         if git.isgit $sword_root
-#             wd.save
-#             cd $sword_root
-#             if net.connected
-#                 set sword_version_remote (git --git-dir="$sword_root/.git" --work-tree="$sword_root" ls-remote origin HEAD | grep HEAD | cut -c 1-7)
-#             else
-#                 set sword_version_remote (sword.version.git)
-#             end
-#             out $sword_version_remote
-#             wd.cd
-#         end
-# end
-#
-# function sword.version.package
-#     if test -f $sword_root/VERSION
-#         set -l sword_version_package (cat $sword_root/VERSION)
-#         out $sword_version_package
-#     end
-# end
-#
-# #                                 .___              _____.__       .__
-# #   ________  _  _____________  __| _/    .__     _/ ____\__| _____|  |__  __
-# #  /  ___/\ \/ \/ /  _ \_  __ \/ __ |   __|  |___ \   __\|  |/  ___/  |  \ \ \
-# #  \___ \  \     (  <_> )  | \/ /_/ |  /__    __/  |  |  |  |\___ \|   Y  \ \ \
-# # /____  >  \/\_/ \____/|__|  \____ |     |__|     |__|  |__/____  >___|  / / /
-# #      \/                          \/                            \/     \/ /_/
-# function sword.logo
-#     function sword
-#         color lightblue
-#     end
-#     function plus
-#         color tomato
-#     end
-#     function fishc
-#         color yellowgreen
-#     end
-#     function arrow
-#         color dimgrey
-#     end
-#     # out.ln ""
-#     out.ln (sword)"                                .___"(plus)"           "(fishc)"  _____.__       .__ "(arrow)""
-#     out.ln (sword)"  ________  _  _____________  __| _/"(plus)"   .__     "(fishc)"_/ ____\__| _____|  |__ "(arrow)" __"
-#     out.ln (sword)" /  ___/\ \/ \/ /  _ \_  __ \/ __ | "(plus)" __|  |___ "(fishc)"\   __\|  |/  ___/  |  \ "(arrow)"\ \ "
-#     out.ln (sword)" \___ \  \     (  <_> )  | \/ /_/ | "(plus)"/__    __/ "(fishc)" |  |  |  |\___ \|   Y  \ "(arrow)"\ \ "
-#     out.ln (sword)"/____  >  \/\_/ \____/|__|  \____ | "(plus)"   |__|    "(fishc)" |__|  |__/____  >___|  / "(arrow)"/ /"
-#     out.ln (sword)"     \/                          \/ "(plus)"           "(fishc)"               \/     \/ "(arrow)"/_/"
-# end
 #
 # function fish_greeting
 #     # sword.logo

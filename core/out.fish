@@ -1,15 +1,11 @@
 function out
-  if arg $argv
-    echo -n -e $argv
-  end
+for argu in $argv
+  printf "%s" $argu
+# if arg $argv
+#   printf "" $argv
 end
-
-function out.ln
-  if arg $argv
-    echo $argv
-  end
+# printf "\n"
 end
-
 
 function out.mute
   # nohup $argv[1] &>/dev/null &
