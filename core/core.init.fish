@@ -8,9 +8,11 @@ function core.init
       debug "core.init: $init_function"
     end
 
-    # profile
+    debug "sword-fish root [$sword_root]"
 
-    # emit profile
+    profile
+
+    debug eval profile.print
 
 
 end

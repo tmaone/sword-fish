@@ -1,3 +1,3 @@
 function var.default
-  set -U -- $argv
+  set -xU -- $argv
 end

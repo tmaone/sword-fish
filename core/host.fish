@@ -5,8 +5,3 @@ function host
 
     end
 end
-# function host.profile.print
-#   out.ln HOST_NAME (host.name)
-#   out.ln HOST (file.base (host.name))
-#   out.ln HOST_EXT (host.extension (host.name))
-# end

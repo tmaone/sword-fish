@@ -5,7 +5,7 @@ function ps
 end
 
 function ps.top
-  switch $OS
+  switch (os)
     case darwin
       call $ps -eo pcpu,pid,user,args | sed 1d | sort -r -k 1 | head -10
     case linux

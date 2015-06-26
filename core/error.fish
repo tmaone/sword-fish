@@ -1,11 +1,12 @@
 function error
-  # if arg $argv
+  if arg $argv
+    out.ln (color $color_error)"error "(color $color_normal) "$argv"
     # echo (out.ln (color $color_error)error(color $color_normal) $argv) >&2
     # out.ln (color color_error)error(color color_normal) $argv
   # else
     # echo (out.ln (color $color_error)error(color $color_normal) $argv) >&2
     # out.ln (color $color_error)error(color $color_normal) >&2
-  # end
+  end
   # echo (red) "⁐" (normal) "$argv"(red) .(normal)
 
 end

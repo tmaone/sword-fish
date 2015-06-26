@@ -4,9 +4,10 @@ function host.init
   find.program sudo
 end
 
-function host.profile --on-event profile
-  var.global HOST (file.base (host.name))
-  var.global HOST_NAME (host.name)
-  var.global HOST_EXT (host.extension (host.name))
-  debug "host.profile [$HOST_NAME] [$HOST] [$HOST_EXT]"
+function _host_profile --on-event profile
+  host.profile
+end
+
+function _host_profile_print --on-event profile_print
+  host.profile.print
 end

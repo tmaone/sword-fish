@@ -1,8 +1,12 @@
 function profile.print --description 'Prints the os profile information'
-    info OS = "[$OS]"
-    info KERNEL = "[$KERNEL]"
-    info ARCH = "[$ARCH]"
+
+    info "OS [$OS]"
+    info "KERNEL [$KERNEL]"
+    info "ARCH [$ARCH]"
+    info "PLATFORM [$PLATFORM]"
+
     emit profile_print
+
     # profile
     # out.ln (color color_info)\$(color color_normal) "[$PLATFORM]"
     # out.ln (color color_info)OS(color color_normal) "[$OS]"

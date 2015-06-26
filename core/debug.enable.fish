@@ -1,3 +1,3 @@
 function debug.enable
-  var.global debug on
+  var.default debug ""
 end
