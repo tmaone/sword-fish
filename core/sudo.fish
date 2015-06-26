@@ -20,7 +20,6 @@ function sudo
 end
 
 function sudo.validate
-    # sudo -v
     if eval $sudo -v > /dev/null
         return 0
     else
@@ -29,7 +28,6 @@ function sudo.validate
 end
 
 function sudo.invalidate
-    # sudo -k
     if eval $sudo -k > /dev/null
         return 0
     else
