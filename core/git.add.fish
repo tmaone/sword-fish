@@ -1,4 +1,3 @@
-
 function git.add
   if arg $argv
     call $git add $argv

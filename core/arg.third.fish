@@ -1,5 +1,5 @@
 function arg.third
-    if arg.three $argv
+    if test (arg.count $argv) -ge 3
         echo $argv[3]
         return 0
     else

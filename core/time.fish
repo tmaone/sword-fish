@@ -18,7 +18,6 @@ function time.stamp
   call $date "+%Y%m%d%H%M%S"
 end
 
-
 function time.countdown
 
     set -l MIN 1

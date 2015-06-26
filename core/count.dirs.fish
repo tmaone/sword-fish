@@ -1,0 +1,3 @@
+function count.dirs
+
+end

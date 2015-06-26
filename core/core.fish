@@ -1,10 +1,14 @@
-if not set -q sword_core_modules
-  set -xg sword_core_modules arg array call var string find wd dir file in out color log info warn debug error profile fn ask linux osx path net git fish disk cpu download host hash ps setting src sudo uuid time date reload update prompt term plugin theme
-end
+# if not set -q sword_core_modules
+#   set -xg sword_core_modules arg array call var string find wd dir file in out color log info warn debug error profile fn ask linux osx path net git fish disk cpu download host hash ps setting src sudo uuid time date reload update prompt term plugin theme
+# end
 
 function core.init
 
   if not set -q sword_core_init
+
+    var.global sword_version (sword.version)
+
+    emit sword_core_init
 
     for core_module in $sword_core_modules
       if set -q sword_load_progress
@@ -14,11 +18,11 @@ function core.init
       end
     end
 
-    if set -q sword_load_progress
-      echo
-    end
+    # if set -q sword_load_progress
+    #   echo
+    # end
 
-    # var.global sword_version (sword.version)
+    #
 
     # if file.exists "$sword_root/config/default.sword-fish"
         # builtin source "$sword_root/config/default.sword-fish"
@@ -42,15 +46,7 @@ function core.init
 
 end
 
-# function sword.version
-#   if git.isgit $sword_root
-#     wd.save
-#     cd $sword_root
-#     set -l sword_version (git describe --tags --always)
-#     out $sword_version
-#     wd.cd
-#   end
-# end
+
 #
 # function sword.version.git
 #         if git.isgit $sword_root

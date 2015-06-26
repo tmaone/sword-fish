@@ -1,5 +1,5 @@
 function arg.second
-    if arg.two $argv
+    if test (arg.count $argv) -ge 2
         echo $argv[2]
         return 0
     else

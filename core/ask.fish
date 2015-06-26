@@ -1,5 +1,5 @@
 function ask
-echo (green) $argv[1] [y/n]
+echo (color green) $argv[1] [y/n]
 read ans
 switch $ans
 case y

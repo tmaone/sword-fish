@@ -1,4 +1,3 @@
-
 function array.contains
   if arg.two $argv
     if set -q $argv[1]
