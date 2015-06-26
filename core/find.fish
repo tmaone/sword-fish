@@ -9,6 +9,8 @@ function find.init
 
 end
 
+# init find_init
+
 function find
 
     if not set -q find_init

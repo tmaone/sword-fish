@@ -14,12 +14,12 @@ end
 
 function path.remove
     if arg.one $argv
-        if test -d "$argv[1]"
+        # if test -d "$argv[1]"
             if contains "$argv[1]" $PATH
                 set -l idx (contains --index "$argv[1]" $PATH)
                 set -e PATH[$idx]
             end
-        end
+        # end
     end
 end
 
@@ -40,4 +40,9 @@ end
 
 function path.clean
     var.clean PATH
+    for path in $PATH
+      if not dir.exists "$path"
+        path.remove "$path"
+      end
+    end
 end

@@ -46,9 +46,10 @@ end
 function prompt.load
   if arg.one $argv
     wd.save
-    # cd $sword_prompt/$argv
-    # # wd
-    # # file.extension prompt
+
+    cd $sword_prompt/$argv
+    # wd
+    # file.extension prompt
     # set -l prompt_files (file.extension 'prompt')
     # # set -l sword_prompts (file.extension prompt)
     #
@@ -56,7 +57,7 @@ function prompt.load
     # for file in $prompt_files
     # #   echo $file
     # #   if file.exists "$file"
-    # echo "builtin source" "$argv"
+    # echo "builtin source" "$file"
     # #     builtin source "$file"
     # #   end
     # end
@@ -67,9 +68,9 @@ end
 function prompt.list
   for prompt in $sword_prompts
     out $prompt"/ "
-    # set -l file_list (ls $sword_prompt/$prompt/*.prompt)
-    echo ls $sword_prompt/$prompt/*.prompt
-    echo $file_list
+    set -l file_list (ls $sword_prompt/$prompt/*.prompt)
+    # echo ls $sword_prompt/$prompt/*.prompt
+    # echo $file_list
     for file_list_item in $file_list
     set -l filename (file.name $file_list_item)
     set -l basename (file.base $filename)

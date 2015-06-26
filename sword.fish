@@ -32,4 +32,4 @@ end
 
 if status --is-login
 
-end
+end;
