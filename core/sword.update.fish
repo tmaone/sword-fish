@@ -1,14 +1,15 @@
 function sword.update
 
-  if sword.update.check
-    var.global update_available true
-  else
-    return 0
-  end
+  # if
+  #   var.global update_available true
+  # else
+  #   return 0
+  # end
   # end
   # if test (math (random)%100) -ge (math 100 - $update_chance)
 
-  if test $update_available = true
+  if sword.update.check
+    # test $update_available = true
     set -l info_msg (call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull)
     info $info_msg
     reload
