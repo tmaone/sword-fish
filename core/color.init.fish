@@ -4,9 +4,9 @@ function color.init
 		var.global color_data "$sword_core/colors"
 	end
 
-	# function --on-event color_not_found _fish_color_not_found
-	# 	error "Color not found!"
-	# end
+	function _fish_color_not_found --on-event color_not_found
+		error "color not found"
+	end
 
 	if test -f $color_data
 	  var.global color_names (cat "$color_data" | awk -F ' ' '{print $1}')
@@ -27,10 +27,15 @@ function color.init
 			end
 	end
 
+	if not set -q color_set
+		var.global color_set default
+	end
+
 	var.global color_normal $color_whitesmoke
 	var.global color_info 	$color_gray
 	var.global color_warn 	$color_palegoldenrod
 	var.global color_error 	$color_crimson
 	var.global color_debug 	$color_darkorange
 
+	
 end

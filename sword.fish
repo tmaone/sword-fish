@@ -1,9 +1,5 @@
 #!/usr/bin/env fish
 
-if set -q fish_greeting
-    set -e fish_greeting
-end
-
 if not set -q sword_root
   if test -d "$HOME/.sword"
     set -xU sword_root "$HOME/.sword"
@@ -21,6 +17,15 @@ if not contains $sword_core $fish_function_path
 end
 
 core.init
+
+# function fish_greeting -d "what's up, fish?"
+#   set_color $fish_color_autosuggestion[1]
+#   printf "%s %s %s %s\n" (host.name) (os) (os.kernel) (os.arch)
+#   # uname -nsr
+#   # uptime
+#   set_color normal
+# end
+
 
 function sword
 

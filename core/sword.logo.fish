@@ -19,6 +19,10 @@ function sword.logo
         color dimgrey
     end
 
+    set -l info_line (printf "%s%s %s %s %s%s" (set_color $fish_color_autosuggestion[1]) (host.name) (os) (os.kernel) (os.arch)(set_color normal))
+
+    out.ln $info_line
+
     out.ln (sword)"                                .___"(plus)"           "(fishc)"  _____.__       .__ "(arrow)""
     out.ln (sword)"  ________  _  _____________  __| _/"(plus)"   .__     "(fishc)"_/ ____\__| _____|  |__ "(arrow)" __"
     out.ln (sword)" /  ___/\ \/ \/ /  _ \_  __ \/ __ | "(plus)" __|  |___ "(fishc)"\   __\|  |/  ___/  |  \ "(arrow)"\ \ "

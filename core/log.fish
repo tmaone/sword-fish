@@ -31,57 +31,6 @@ function log.valid
     end
 end
 
-
-function log.file.on
-  set -xU log_to_file "on"
-  return 0
-end
-
-function log.file.off
-  set -xU log_to_file "off"
-  return 0
-end
-
-function log.file.clear
-  if file.exists "$sword_log_file"
-    echo "" > "$sword_log_file"
-    return 0
-  else
-    return 1
-  end
-end
-
-if not set -q log_to_file
-  log.file.off > /dev/null
-end
-
-function log.file
-    if not arg $argv
-      if test "$log_to_file" = on
-        return 0
-      else
-        return 1
-      end
-    end
-    if test (count $argv) = 1
-        switch $argv[1]
-        case on
-          log.file.on
-        case off
-          log.file.off
-        case clear
-          log.file.clear
-        case '*'
-            invalid
-            return 1
-        end
-    end
-end
-
-function log.time
-  out (color normal)"["(color darkslategrey)(date.time)(color normal)"]"
-end
-
 function log
     if arg $argv
         if log.valid $argv[1]

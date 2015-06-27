@@ -5,5 +5,11 @@ function out.demo
   error "Halt! an error"
   out.ln "normal message without topic out here..."
   out.ln "hello" "normal out here... with topic [hello]"
-  out.ln "congratulations" " longer message normal out here..."
+  out.ln "triggering" "Longer message normal out here..."
+  out.ln (time) "This is a timed message."
+  echo $log_error_prompt "error"
+  echo $log_info_prompt "info"
+  echo $log_warn_prompt "warn"
+  echo $log_debug_prompt "debug"
+  echo $log_out_prompt "out"
 end

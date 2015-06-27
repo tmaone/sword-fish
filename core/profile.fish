@@ -10,9 +10,8 @@ function profile --description 'Profiles the Operating System'
     set -xg PLATFORM (os.platform)
 
     debug profile [$OS] [$KERNEL] [$ARCH] [$PLATFORM]
-    
-    emit profile
 
+    emit profile
 
     # set -xg OS_NAME (sw_vers  -productName)
     # set -xg OS_VERSION (sw_vers  -productVersion)

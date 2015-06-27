@@ -9,6 +9,7 @@ function progress --description 'Evaluates and propagates the return status of t
 end
 
 # ❩º✇♁♁♀♂♁✧✙✚◎◉⦿☐■▪︎◼︎◻︎▶︎✦✧✩✔︎✖︎⨀⊙⦿
+# echo (red) "⁐" (normal) "$argv"(red) .(normal)
 
 function progress.bar
 

@@ -55,8 +55,9 @@
   # end
 #
 # end
-
-
+# if set -q fish_greeting
+#     set -e fish_greeting
+# end
 #
 # function fish_greeting
 #     # sword.logo

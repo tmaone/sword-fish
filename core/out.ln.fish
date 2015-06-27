@@ -18,7 +18,7 @@ function out.ln
     end
     printf "\n"
   else
-    printf "      \n"
+    printf "\n"
   end
   #   if arg.one
   #     echo $argv

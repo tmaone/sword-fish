@@ -1,7 +1,7 @@
 function error
   if error.enabled
     if arg $argv
-      printf "%s%s%s%s\n" (color $color_error) "error " (color $color_normal) "$argv"
+      out.ln (color $color_error)"error"(color $color_normal) "$argv"
     # echo (out.ln (color $color_error)error(color $color_normal) $argv) >&2
     # out.ln (color color_error)error(color color_normal) $argv
   # else
@@ -30,4 +30,20 @@ end
 #
 # function error.many --on-event error_many
 #     log.error "Too many arguments"
+# end
+
+
+# #
+# # Create the default command_not_found handler
+# #
+# function __fish_default_command_not_found_handler
+#     echo "fish: Unknown command '$argv'" >&2
+# end
+#
+# #
+# # Hook up the default as the principal command_not_found handler
+# # This is likely to be overwritten in __fish_config_interactive
+# #
+# function __fish_command_not_found_handler --on-event fish_command_not_found
+#     __fish_default_command_not_found_handler $argv
 # end
