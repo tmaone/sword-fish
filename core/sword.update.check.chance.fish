@@ -13,6 +13,12 @@ function sword.update.check.chance
 end
 
 
+
+
+
+
+
+
 #   if string.equals (sword.version.git) (sword.version.remote)
 #       return 1
 #   else
