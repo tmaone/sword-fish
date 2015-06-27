@@ -37,3 +37,5 @@ end
 if status --is-login
 
 end;
+
+var.global sword "ok"

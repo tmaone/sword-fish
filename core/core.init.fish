@@ -45,14 +45,8 @@ function core.init
       info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
     end
 
-    var.global core_init "done"
 
-    out.ln ""
-    out.ln ""
-    out.ln ""
-    out.ln ""
-    out.ln ""
-    
+    var.global core_init "done"
 
   end
 
