@@ -1,5 +1,17 @@
 function core.init
 
+    if status --is-interactive
+    echo interactive
+    # set -e __fish_prompt_cwd
+    # commandline -f repaint ^/dev/null
+    end
+
+    if status --is-login
+    echo login
+    # set -e __fish_prompt_cwd
+    # commandline -f repaint ^/dev/null
+    end
+
     debug "sword-fish root [$sword_root]"
 
     var.global init_functions (fn.list | grep ".init")
