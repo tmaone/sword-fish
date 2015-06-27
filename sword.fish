@@ -26,7 +26,6 @@ core.init
 #   set_color normal
 # end
 
-
 function sword
 
 end

@@ -47,6 +47,13 @@ function core.init
 
     var.global core_init "done"
 
-    end
+    out.ln ""
+    out.ln ""
+    out.ln ""
+    out.ln ""
+    out.ln ""
+    
+
+  end
 
 end
