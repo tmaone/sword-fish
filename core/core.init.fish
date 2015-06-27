@@ -1,16 +1,6 @@
 function core.init
 
-    if status --is-interactive
-    echo interactive
-    # set -e __fish_prompt_cwd
-    # commandline -f repaint ^/dev/null
-    end
-
-    if status --is-login
-    echo login
-    # set -e __fish_prompt_cwd
-    # commandline -f repaint ^/dev/null
-    end
+  if not var.done core_init
 
     debug "sword-fish root [$sword_root]"
 
@@ -56,5 +46,7 @@ function core.init
     end
 
     var.global core_init "done"
+
+    end
 
 end
