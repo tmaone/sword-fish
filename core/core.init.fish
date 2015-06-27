@@ -35,7 +35,7 @@ function core.init
 
     # theme.load
 
-    # color.personal
+    color.original
 
     if file.exists "$sword_root/config/default.sword-fish"
         builtin source "$sword_root/config/default.sword-fish"
@@ -44,7 +44,6 @@ function core.init
     if sword.update.check.chance
       info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
     end
-
 
     var.global core_init "done"
 
