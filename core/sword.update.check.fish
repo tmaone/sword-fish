@@ -1,4 +1,4 @@
-function update.check
+function sword.update.check
   set -l version_local_git (sword.version.git)
   set -l version_remote_git ''
   if net.connected

@@ -1,10 +1,13 @@
-function out
-for argu in $argv
-  printf "%s" $argu
-# if arg $argv
-#   printf "" $argv
+if not var.exists out
+  out.init
 end
-# printf "\n"
+
+function out
+
+  if arg $argv
+    call $out "%s" "$argv"
+  end
+
 end
 
 function out.mute

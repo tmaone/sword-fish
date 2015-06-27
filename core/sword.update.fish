@@ -1,6 +1,6 @@
 function sword.update
 
-  if update.check
+  if sword.update.check
     var.global update_available true
   else
     return 0

@@ -1,4 +1,4 @@
-function var.query
+function var.exists
   if arg.one $argv
     if set -q $argv[1]
       return 0
