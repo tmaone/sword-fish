@@ -1,12 +1,13 @@
 function sword.update.check
-  set -l version_local_git (sword.version.git)
-  set -l version_remote_git ''
-  if net.connected
-        set version_remote_git (git --git-dir="$sword_root/.git" --work-tree="$sword_root" ls-remote origin HEAD | grep HEAD | cut -c 1-7)
-  else
-      set version_remote_git (sword.version.git)
+
+  set -l ahead (git --git-dir="$sword_root/.git" --work-tree="$sword_root" status | grep ahead | count.lines)
+
+  if test "$ahead" -gt 0
+    debug "sword-fish is ahead of remote"
+    return 1
   end
-  if string.equals "$version_local_git" "$version_remote_git"
+
+  if string.equals (sword.version.git) (sword.version.remote)
       return 1
   else
       return 0
