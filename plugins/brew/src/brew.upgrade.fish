@@ -1,3 +1,3 @@
 function brew.upgrade
-  brew upgrade --all
+  brew upgrade --all $argv
 end

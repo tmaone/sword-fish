@@ -1,3 +1,3 @@
 function brew.update
-  brew update
+  brew update $argv
 end

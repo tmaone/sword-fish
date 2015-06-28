@@ -1,3 +1,3 @@
 function brew.clean
-  brew cleanup -s;
+  brew cleanup -s --force -vvv
 end
