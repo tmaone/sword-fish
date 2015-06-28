@@ -10,7 +10,7 @@ if arg.one $argv
   else
   for plugin in $sword_plugins
     if not test -f "$sword_plugin/$plugin/.enabled"
-      echo -n "$plugin "
+      out "$plugin "
     end
   end
 end
