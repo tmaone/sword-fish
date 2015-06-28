@@ -12,7 +12,7 @@ function sword.update
     set -l local (sword.version.git)
     set -l remote (sword.version.remote)
     info "Updating "(color darksalmon)$local(color normal)" to "(color darkseagreen)$remote(color normal)" ..."
-    call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" --quiet pull --quiet
+    call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull --quiet
     reload
     var.global update_available false
   end
