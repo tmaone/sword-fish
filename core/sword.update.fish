@@ -9,10 +9,10 @@ function sword.update
   # if test (math (random)%100) -ge (math 100 - $update_chance)
 
   if sword.update.check
-    var.local local (sword.version.git)
-    var.local remote (sword.version.remote)
-    info "Updating $local to $remote ..."
-    call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" --quiet pull
+    set -l local (sword.version.git)
+    set -l remote (sword.version.remote)
+    info "Updating "(color darksalmon)$local(color normal)" to "(color darkseagreen)$remote(color normal)" ..."
+    call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" --quiet pull --quiet
     reload
     var.global update_available false
   end
