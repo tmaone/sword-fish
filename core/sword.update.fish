@@ -9,9 +9,10 @@ function sword.update
   # if test (math (random)%100) -ge (math 100 - $update_chance)
 
   if sword.update.check
-    # test $update_available = true
-    set -l info_msg (call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull)
-    # info $info_msg
+    var.local local (sword.version.git)
+    var.local remote (sword.version.remote)
+    info "Updating $local to $remote ..."
+    call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" --quiet pull
     reload
     var.global update_available false
   end
