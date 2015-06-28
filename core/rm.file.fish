@@ -1,3 +1,3 @@
-function rm .file
+function rm.file
   call $rm $argv
 end
