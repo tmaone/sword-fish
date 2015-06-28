@@ -29,11 +29,11 @@ function core.init
 
     end
 
-    # plugin.load
+    plugin.load
 
-    # prompt.load
+    prompt.load
 
-    # theme.load
+    theme.load
 
     color.original
 
