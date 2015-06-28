@@ -1,5 +1,12 @@
 function os.uptime
-  out (uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }')
+  set -l up (uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2 }')
+  set -l days (uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $3 }')
+  if string.contains $days days
+      out $up $days
+  else
+      out $up
+  end
+  # out (uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }')
 end
 
 # UPTIME: ( 5 days, 19:12:41 )
