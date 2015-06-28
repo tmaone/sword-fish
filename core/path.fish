@@ -1,5 +1,5 @@
 function path
   for path in $PATH
-    echo
+    echo $path
   end
 end

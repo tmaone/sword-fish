@@ -45,6 +45,24 @@ function core.init
       info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
     end
 
+    function on_exit --on-process %self
+        echo 'bye.'
+    end
+
+    function on_pwd -v PWD
+
+        if not var.exists pwd
+            set -xg pwd (pwd.get)
+        end
+
+        if not test $PWD = (pwd.get)
+            path.remove "$pwd"
+            path.add (pwd)
+            pwd.save
+        end
+
+    end
+
     var.global core_init "done"
 
   end

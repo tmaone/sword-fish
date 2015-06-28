@@ -1,11 +1,6 @@
+# set sword_core_init "done"
 
-
-
-
-
-    # set sword_core_init "done"
-
-  # end
+# end
 #
 # end
 # if set -q fish_greeting
@@ -51,25 +46,11 @@
 # end
 
 
-# function on_pwd -v PWD
-#
-#     if not set -q sword_pwd
-#         set -xg sword_pwd (wd.get)
-#     end
-#
-#     if not test $PWD = "$sword_pwd"
-#         path.remove "$sword_pwd"
-#         path.add (wd.get)
-#         set -xg sword_pwd (wd.get)
-#     end
-#
-# end
+
 
 
 #
-# # function on_exit --on-process %self
-#     # echo 'bye.'
-# # end
+
 #
 
 # end
