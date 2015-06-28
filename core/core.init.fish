@@ -39,7 +39,7 @@ function core.init
 
     theme.load
 
-    color.original
+    color.personalize
 
     if file.exists "$sword_root/config/default.sword-fish"
         builtin source "$sword_root/config/default.sword-fish"
