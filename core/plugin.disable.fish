@@ -1,4 +1,3 @@
-
 function plugin.disable
   if arg.one $argv
     if contains "$argv" $sword_plugins
