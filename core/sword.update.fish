@@ -20,13 +20,6 @@ function sword.update
 end
 
 
-
-
-
-
-
-
-
 # function update.
 #     if sword.check_update
 #         call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull
