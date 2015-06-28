@@ -22,10 +22,14 @@ function core.init
 
       sword.logo
 
-      set -l line1 (printf (_ 'Welcome to fish, the friendly interactive shell') )
-      set -l line2 (printf (_ 'Type %shelp%s for instructions on how to use fish') (set_color green) (set_color normal))
-      out.ln "$line1"
-      out.ln "$line2"
+      # set -l line1 (printf (_ 'Welcome to fish, the friendly interactive shell') )
+      # set -l line2 (printf (_ 'Type %shelp%s for instructions on how to use fish') (set_color green) (set_color normal))
+      # out.ln "$line1"
+      # out.ln "$line2"
+
+      if sword.update.check.chance
+        info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
+      end
 
     end
 
@@ -39,10 +43,6 @@ function core.init
 
     if file.exists "$sword_root/config/default.sword-fish"
         builtin source "$sword_root/config/default.sword-fish"
-    end
-
-    if sword.update.check.chance
-      info "sword+fish update available... " (color tomato)"("(color darkorange)(sword.version.git)(color tomato)")"(color normal)"~>"(color palegreen)"("(color aqua)(sword.version.remote)(color palegreen)")"(color normal)
     end
 
     function on_exit --on-process %self
