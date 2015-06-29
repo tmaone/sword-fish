@@ -9,7 +9,7 @@ function plugin.init
   end
 
   if dir.exists $sword_plugin
-    set -xg sword_plugins (ls $sword_plugin) # find.dirs $argv
+    set -xg sword_plugins (dir.list $sword_plugin) # find.dirs $argv
   end
 
   set -xg plugin_init
