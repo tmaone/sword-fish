@@ -37,5 +37,4 @@ function color.init
 	var.global color_error 	$color_crimson
 	var.global color_debug 	$color_darkorange
 
-
 end

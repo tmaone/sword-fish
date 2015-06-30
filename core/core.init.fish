@@ -8,7 +8,7 @@ function core.init
     var.remove init_functions "core.init"
 
     for init_function in $init_functions
-      call "$init_function"
+      eval "$init_function"
       debug "core.init: $init_function"
     end
 

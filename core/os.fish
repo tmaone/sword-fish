@@ -1,4 +1,4 @@
-if test -z $uname -o -z $sed
+if test -z "$uname" -o -z "$sed"
   os.init
 end
 
