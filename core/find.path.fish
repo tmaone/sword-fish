@@ -3,7 +3,8 @@ if not var.done find_init
 end
 
 function find.path
-    # echo $argv
+
+    set -l synology (syno)
 
     if syno
       if arg.one $argv
@@ -14,5 +15,5 @@ function find.path
         call $which -a "$argv[1]"
       end
     end
-    
+
 end

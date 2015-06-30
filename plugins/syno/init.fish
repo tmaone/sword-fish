@@ -11,5 +11,5 @@ function syno.init
 end
 
 syno syno.init
-#osx error "not supported"
-#linux error "not supported"
+osx error "not supported"
+linux error "not supported"
