@@ -8,8 +8,10 @@ function plugin.update
     end
   else
     for plugin in $sword_plugins
-      call $git --git-dir="$sword_plugin_root/$plugin/.git" --work-tree="$sword_plugin_root/$plugin" pull
-      plugin.load "$plugin"
+      if dir.exists "$sword_plugin_root/$plugin/.git"
+        call $git --git-dir="$sword_plugin_root/$plugin/.git" --work-tree="$sword_plugin_root/$plugin" pull
+        plugin.load "$plugin"
+      end
     end
   end
 end
