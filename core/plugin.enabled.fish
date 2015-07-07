@@ -10,7 +10,7 @@ function plugin.enabled
   else
     for plugin in $sword_plugins
       if test -f "$sword_plugin/$plugin/.enabled"
-        out "$plugin "
+        out.ln "$plugin"
       end
     end
   end

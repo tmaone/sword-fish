@@ -1,8 +1,15 @@
 function plugin.update
-  if arg.one $argv
-    if plugin.exists "$argv[1]"
-        call $git --git-dir="$sword_plugin/$argv[1]/.git" --work-tree="$sword_plugin/$argv[1]" pull
-        plugin.load "$argv[1]"
+  if arg $argv
+    for plugin in $argv
+      if plugin.exists "$plugin"
+        call $git --git-dir="$sword_plugin_root/$plugin/.git" --work-tree="$sword_plugin_root/$plugin" pull
+        plugin.load "$plugin"
+      end
+    end
+  else
+    for plugin in $sword_plugins
+      call $git --git-dir="$sword_plugin_root/$plugin/.git" --work-tree="$sword_plugin_root/$plugin" pull
+      plugin.load "$plugin"
     end
   end
 end
