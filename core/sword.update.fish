@@ -17,6 +17,8 @@ function sword.update
     var.global update_available false
   end
 
+  emit sword_update
+
 end
 
 
