@@ -10,6 +10,10 @@ function syno.init
 
 end
 
+function syno.not_supported
+
+end
+
 syno syno.init
-osx error "not supported"
-linux error "not supported"
+osx syno.not_supported
+linux syno.not_supported
