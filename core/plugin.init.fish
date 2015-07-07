@@ -4,12 +4,12 @@ function plugin.init
     set -xg sword_plugin_root "$sword_root/plugins"
   end
 
-  if not dir.exists $sword_plugins_root
-    dir.create $sword_plugins_root
+  if not dir.exists $sword_plugin_root
+    dir.create $sword_plugin_root
   end
 
-  if dir.exists $sword_plugins_root
-    set -xg sword_plugins (dir.list $sword_plugins_root) # find.dirs $argv
+  if dir.exists $sword_plugin_root
+    set -xg sword_plugins (dir.list $sword_plugin_root) # find.dirs $argv
   end
 
   set -xg sword_plugin_init
