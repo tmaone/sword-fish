@@ -22,6 +22,11 @@ function core.init
 
     sword.greeting
 
+    path.clean
+
+    fn.path.clean
+
+
     if file.exists "$sword_root/config/default.sword-fish"
       builtin source "$sword_root/config/default.sword-fish"
     end
