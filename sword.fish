@@ -1,5 +1,7 @@
 # !/usr/bin/env fish
 
+if not var.done sword_init
+
 if not set -q sword_root
   if test -d "$HOME/.sword"
     set -xg sword_root "$HOME/.sword"
@@ -44,6 +46,11 @@ end
 
 if file.exists "$sword_root/config/default.sword-fish"
   builtin source "$sword_root/config/default.sword-fish"
+end
+
+
+var.global sword_init done
+
 end
 
 # function on_exit --on-process %self
