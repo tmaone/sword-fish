@@ -14,7 +14,7 @@ function sword.update
     info "Updating "(color darksalmon)$local(color normal)" to "(color darkseagreen)$remote(color normal)" ..."
     call $git --git-dir="$sword_root/.git" --work-tree="$sword_root" pull --quiet
     reload
-    var.global update_available false
+    var.global sword_update_available false
   end
 
   emit sword_update
