@@ -12,6 +12,10 @@ function plugin.init
     set -xg sword_plugins (dir.list $sword_plugin_root)
   end
 
+  function sword.plugin.update --on-event sword_update
+    plugin.update
+  end
+
   set -xg sword_plugin_init
 
 end
