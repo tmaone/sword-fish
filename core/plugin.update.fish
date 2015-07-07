@@ -1,4 +1,4 @@
-function plugin.update
+function plugin.update --on-event sword_update
   if arg $argv
     for plugin in $argv
       if plugin.exists "$plugin"
