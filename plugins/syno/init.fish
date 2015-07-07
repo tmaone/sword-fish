@@ -1,7 +1,7 @@
 function syno.init
 
   if not set -q syno
-    var.global syno (ls $sword_plugin/syno/src/*.fish)
+    var.global syno (ls $sword_plugin_root/syno/src/*.fish)
   end
 
   for file in $syno

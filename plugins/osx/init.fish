@@ -24,7 +24,7 @@ function osx.init
   var.global PlistBuddy "/usr/libexec/PlistBuddy"
 
   if not set -q osx
-    var.global osx (ls $sword_plugin/osx/src/*.fish)
+    var.global osx (ls $sword_plugin_root/osx/src/*.fish)
   end
 
   for file in $osx
