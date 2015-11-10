@@ -241,3 +241,7 @@ function osx.diradmin.password
   end
   end
 end
+
+function osx.gatekeeper.disable
+    call $defaults write /Library/Preferences/com.apple.security GKAutoRearm -bool NO
+end
