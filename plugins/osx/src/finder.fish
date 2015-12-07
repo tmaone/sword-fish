@@ -67,3 +67,13 @@ end
 function osx.finder.warn-extension.off
   osx.defaults.write com.apple.finder FXEnableExtensionChangeWarning -bool false
 end
+
+
+function osx.finder.networkds.off
+  osx.defaults.write com.apple.desktopservices DSDontWriteNetworkStores true
+end
+  
+function osx.finder.networkds.on
+  osx.defaults.write com.apple.desktopservices DSDontWriteNetworkStores false
+end
+
