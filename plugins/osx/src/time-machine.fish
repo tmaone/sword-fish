@@ -30,3 +30,7 @@ end
 function osx.time-machine.exclude
   call $sudo $tmutil addexclusion $argv;
 end
+
+function osx.time-machine.snapshot
+  call $sudo $tmutil snapshot
+end

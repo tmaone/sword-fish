@@ -5,5 +5,5 @@ function os.update
   cd ~/src/language/julia; git pull; make install; cd ~
   julia -e "Pkg.update();Pkg.build()"
   apm update --confirm false
-  tlmgr update --self --all --reinstall-forcibly-removed
+  sudo tlmgr update --self --all --reinstall-forcibly-removed
 end
